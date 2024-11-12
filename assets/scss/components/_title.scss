@@ -1,0 +1,65 @@
+
+/* Titles
+-----------------------------------------------------------------*/
+
+.sec-head{
+
+    h2{
+        font-size: 52px;
+    }
+
+    .head-cont{
+
+        .icon{
+            margin-left: auto;
+        }
+    }
+}
+
+.lg-bold-head{
+    position: relative;
+
+    &:after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -250px;
+        width: 280px;
+        border-bottom: 1px solid #141414;
+        transform: rotate(-45deg);
+    }
+
+    h2{
+        font-size: 265px;
+        font-weight: 900;
+        text-transform: uppercase;
+        white-space: nowrap;
+        line-height: 1;
+
+        .inline{
+            display: inline;
+            position: relative;
+
+            .icon{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-45%);
+                width: 40px;
+                height: 100%;
+            }
+        }
+    }
+
+    &.gray{
+
+        &:after{
+            display: none;
+        }
+
+        h2{
+            color: #eee;
+        }
+    }
+
+}

@@ -1,0 +1,279 @@
+
+/* Blog
+-----------------------------------------------------------------*/
+
+.blog{
+
+	.item{
+
+		.img{
+			height: 380px;
+		}
+
+		.view{
+
+			svg{
+				width: 15px;
+				margin-left: 10px;
+			}
+		}
+	}
+
+	&.style2{
+
+		.item{
+			padding: 30px 30px 20px;
+			border: 1px solid rgba(0,0,0,.1);
+
+			.img{
+				height: 300px;
+			}
+		}
+	}
+}
+
+.main-post{
+
+	.blog{
+
+		.item{
+
+			.img{
+				height: 550px;
+			}
+		}
+	}
+
+	.tags{
+
+		a{
+			padding: 5px 10px;
+			background: rgba(0,0,0,.05);
+			font-size: 13px;
+			margin: 0 5px;
+
+			&:hover{
+				background: #141414;
+				color: #fff;
+			}
+		}
+	}
+
+	.author{
+		padding: 30px;
+		position: relative;
+
+		&:hover{
+
+			.social{
+				opacity: 1;
+			}
+		}
+
+		.img-author{
+			width: 100px;
+			height: 100px;
+		}
+
+		.social{
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			opacity: 0;
+			transition: all .4s;
+
+			a{
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				border-radius: 50%;
+				border: 1px solid rgba(0,0,0,.2);
+				font-size: 13px;
+
+				&:hover{
+					background: #141414;
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
+.blogs{
+
+	.coments{
+
+		.item{
+			position: relative;
+
+			.replay{
+				font-size: 13px;
+				padding: 5px 10px;
+				border: 1px solid rgba(0,0,0,.08);
+				position: absolute;
+				top: 0;
+				right: 0;
+
+				&:hover{
+					background: #141414;
+					color: #fff;
+				}
+			}
+
+			&.replaed{
+				margin-left: 80px;
+			}
+		}
+
+		.img{
+			width: 85px;
+			height: 85px;
+		}
+
+		p{
+			width: 85%;
+		}
+	}
+
+	.comments-from{
+
+		label{
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+
+		input,
+		textarea{
+			width: 100%;
+			border: 0;
+			border-bottom: 1px solid rgba(0,0,0,.1);
+			background: transparent;
+			padding-bottom: 15px;
+		}
+
+		button{
+			padding: 14px 40px;
+			background: #141414;
+			border: 0;
+			color: #fff;
+			transition: all .4s;
+
+			svg{
+				width: 18px;
+				margin-left: 10px;
+				
+				path{
+					transition: all .4s;
+				}
+			}
+
+			&:hover{
+				background: $main_color;
+				color: #141414;
+
+				svg{
+
+					path{
+						stroke: #141414;
+					}
+				}
+			}
+		}
+	}
+}
+
+.sidebar{
+
+	.search-box{
+		position: relative;
+
+		input{
+			color: #141414;
+			padding: 15px;
+			border: 1px solid rgba(0,0,0,.4);
+			border-radius: 5px;
+			width: 100%;
+			background: transparent;
+
+            &:focus{
+                border-color: #141414;
+            }
+		}
+
+		.icon{
+			position: absolute;
+			top: 50%;
+			right: 15px;
+			transform: translateY(-50%);
+		}
+	}
+
+	.widget{
+		margin-top: 30px;
+		padding: 30px;
+		border: 1px solid rgba(0,0,0,.08);
+
+		.title-widget{
+			margin-bottom: 30px;
+		}
+		
+		&.catogry{
+
+			li{
+				display: flex;
+				font-size: 15px;
+				margin-bottom: 7px;
+                padding: 15px 20px;
+				border: 1px solid rgba(0,0,0,.08);
+
+				&:hover{
+					background: #141414;
+					color: #fff;
+				}
+
+				&:last-of-type{
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		&.social{
+
+			a{
+				width: 55px;
+				height: 55px;
+				line-height: 55px;
+				text-align: center;
+				border-radius: 50%;
+				background: rgba(0,0,0,.05);
+
+				&:hover{
+					background: #141414;
+					color: #fff;
+				}
+			}
+		}
+
+		&.insta{
+
+			span{
+				width: 110px;
+				height: 110px;
+				margin: 0 2px;
+			}
+
+			.butn-full{
+				background: #141414;
+				color: #fff;
+				width: 100%;
+				text-align: center;
+				padding: 10px;
+
+				i{
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+}

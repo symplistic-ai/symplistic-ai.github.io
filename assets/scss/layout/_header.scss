@@ -1,0 +1,420 @@
+
+/* Headers
+-----------------------------------------------------------------*/
+
+.header-digital{
+    padding: 180px 0 120px;
+    position: relative;
+
+    .best-clients{
+        padding: 25px;
+        box-shadow: 0px 50px 50px 0 rgba(0,0,0,.05);
+        width: max-content;
+        background: #fff;
+        border-radius: 10px;
+        margin-left: 50px;
+        position: relative;
+
+        svg{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 10px;
+        }
+
+        .imgs{
+            padding-left: 10px;
+
+            > div{
+                width: 65px;
+                height: 65px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-left: -10px;
+            }
+
+            .icon{
+                background: #141414;
+                color: #fff;
+                text-align: center;
+                line-height: 65px;
+            }
+        }
+    }
+
+    .caption{
+
+        h1{
+            font-size: 150px;
+            font-weight: 800;
+        }
+    }
+
+    .img-fixed{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 350px;
+        height: 420px;
+        z-index: -1;
+    }
+
+    .img-circle{
+        width: 165px;
+    }
+
+    .contact-email{
+        position: absolute;
+        top: 50%;
+        left: 25px;
+        transform: translateY(-50%);
+
+        .text{
+            transform: rotate(-90deg) translateY(-100%);
+            transform-origin: top left;
+            
+            a{
+                text-decoration: underline;
+                text-decoration-color: #888;
+            }
+        }
+    }
+}
+
+.header-creative{
+    padding: 180px 0 120px;
+    position: relative;
+
+    &:after{
+        content: '';
+        width: 30vw;
+        height: 30vw;
+        border-radius: 50%;
+        background: $main_color;
+        position: absolute;
+        top: -10vw;
+        left: -10vw;
+        z-index: -1;
+    }
+
+    .caption{
+
+        h1{
+            font-size: 120px;
+            line-height: 1.2;
+            font-weight: 800;
+
+            .icon{
+                position: relative;
+                padding-left: 120px;
+
+                img{
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 80px;
+                }
+            }
+
+            .arrow{
+                position: relative;
+                padding-left: 150px;
+
+                img{
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 120px;
+                }
+            }
+        }
+    }
+
+    .right-column{
+        padding-top: 120px;
+        height: 100%;
+        position: relative;
+
+        .img-circle{
+            position: absolute;
+            top: -50px;
+            left: -200px;
+            width: 140px;
+        }
+
+        .text{
+            padding-right: 50px;
+        }
+    }
+
+    .main-img{
+        position: absolute;
+        right: 0;
+        bottom: -280px;
+        width: 42vw;
+        height: 700px;
+    }
+
+    .contact-email{
+        position: absolute;
+        top: 50%;
+        left: 25px;
+        transform: translateY(-50%);
+
+        .text{
+            transform: rotate(-90deg) translateY(-100%);
+            transform-origin: top left;
+            
+            a{
+                text-decoration: underline;
+                text-decoration-color: #888;
+            }
+        }
+    }
+}
+
+.digital-marketing{
+    padding: 180px 0 0;
+    position: relative;
+
+    .full-box{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        min-width: 1920px;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .shape{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 1000px;
+    }
+
+    .caption{
+
+        h1{
+            text-align: right;
+            font-size: 130px;
+            font-weight: 800;
+            line-height: 1.2;
+
+            span{
+                display: block;
+            }
+        }
+
+        .text{
+            padding-left: 150px;
+            position: relative;
+
+            &:after{
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 10px;
+                border-bottom: 1px solid #141414;
+                width: 120px;
+            }
+
+            p{
+                color: #222;
+            }
+        }
+    }
+
+    .dimg{
+
+        img{
+            width: 120%;
+        }
+    }
+
+    .botm{
+        position: relative;
+
+        &:after{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            border-top: 1px solid rgba(0,0,0,.1);
+            z-index: -1;
+        }
+
+        .img{
+            width: 220px;
+            padding: 0 30px;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+        }
+    }
+}
+
+.dstudio{
+    padding: 120px 0;
+    position: relative;
+    color: #fff;
+
+    .img-1 {
+        width: 165px;
+        height: 155px;
+        transform: rotate(-45deg);
+        margin-bottom: 50px;
+    }
+
+    .img-2{
+        position: absolute;
+        top: 40px;
+        right: 400px;
+        width: 730px;
+        height: 270px;
+        transform: translateX(100%);
+    }
+
+    .img-3{
+        position: absolute;
+        left: 215px;
+        bottom: -120px;
+        width: 400px;
+        height: 420px;
+        transform: translateX(-100%);
+    }
+
+    .img-4{
+        width: 190px;
+        height: 190px;
+    }
+
+    .rotat-butn{
+        position: absolute;
+        right: -160px;
+        bottom: 0;
+    }
+
+    .text{
+        
+        p{
+            width: 80%;
+            color: #ccc;
+        }
+    }
+
+    .caption{
+        position: relative;
+
+        h1{
+            font-size: 220px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: .8;
+            letter-spacing: -20px;
+
+            span{
+                display: block;
+                text-align: right;
+            }
+        }
+
+        .v-img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 1550px;
+            height: 475px;
+        }
+    }
+
+    .contact-email{
+        position: absolute;
+        top: 50%;
+        left: 25px;
+        transform: translateY(-50%);
+
+        .text{
+            transform: rotate(-90deg) translateY(-100%);
+            transform-origin: top left;
+            
+            a{
+                text-decoration: underline;
+                text-decoration-color: #888;
+            }
+        }
+    }
+}
+
+.header-business{
+
+    .seo-img{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+    }
+
+    .caption{
+        position: relative;
+        z-index: 4;
+
+        h1{
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .v-img{
+            position: absolute;
+            top: -50px;
+            left: -200px;
+            z-index: -1;
+            pointer-events: none;
+        }
+    }
+
+    .b-img{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 33.3333%;
+        width: 1170px;
+
+        .vid{
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: $main_color2;
+            box-shadow: 0 50px 50px rgba(0,0,0,.05);
+            position: absolute;
+            left: 50%;
+            bottom: 150px;
+            transform: translateX(-25%);
+            font-size: 17px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #fff;
+        }
+    }
+}
+
+.page-header{
+
+    .caption{
+
+        h1{
+            font-size: 140px;
+            font-weight: 800;
+        }
+    }
+}
+  

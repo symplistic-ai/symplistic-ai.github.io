@@ -1,0 +1,163 @@
+
+
+/* Buttons
+-----------------------------------------------------------------*/
+
+.butn{
+    border: 1px solid transparent;
+
+    &.butn-md{
+        padding: 14px 35px;
+    }
+
+
+    &.butn-sm{
+        padding: 8px 18px;
+    }
+
+    &.butn-full{
+      width: 100%;
+      padding: 15px 25px;
+      text-align: center;
+    }
+
+    &.butn-bord{
+        border-color: #141414;
+        background: transparent;
+        transition: all .4s;
+
+        &:hover{
+          background: #141414;
+          color: #fff;
+
+          span{
+            color: #141414;
+          }
+        }
+    }
+
+    &.butn-bg{
+        transition: all .4s;
+        
+        &:hover{
+            background: transparent !important;
+            border-color: #141414;
+            color: #141414 !important;
+        }
+    }
+
+    &.bg-light{
+        background: #fff;
+        border-color: #fff;
+        color: #141414;
+
+        &:hover{
+            background: transparent !important;
+            color: #fff;
+        }
+    }
+
+    .rolling-text{
+        margin-bottom: -5px;
+    }
+}
+
+.butn-circle{
+    width: 180px;
+    height: 180px;
+    border: 1px solid #141414;
+    border-radius: 50%;
+    transition: all .4s;
+
+    &.butn-dark{
+        color: #fff;
+        background: #141414;
+    }
+
+    &.butn-light{
+        color: #fff;
+        border-color: rgba(255,255,255,.2);
+
+        &:hover{
+            background: #fff;
+            color: #141414;
+
+            .text{
+                color: #141414;
+            }
+    
+            svg{
+    
+                path{
+                    stroke: #141414;
+                }
+            }
+        }
+    }
+
+    svg{
+
+        path{
+            transition: all .4s;
+        }
+    }
+
+    &:hover{
+        background: #141414;
+        color: #fff;
+
+        svg{
+
+            path{
+                stroke: #fff;
+            }
+        }
+
+        .text-dark{
+            color: #fff !important;
+        }
+    }
+}
+
+.rotat-butn{
+    position: relative;
+    display: inline-block;
+
+    .text{
+        width: 160px;
+    }
+
+    .g-icon{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+.circle-button{
+    position: relative;
+    display: inline-block;
+
+    .rotate-circle{
+
+        svg{
+            width: 210px;
+            fill: $body_color;
+            text-transform: uppercase;
+        }
+    }
+
+}
+
+.rotate-circle{
+    animation-name: rotateCircle;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotateCircle {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}

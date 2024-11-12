@@ -1,0 +1,89 @@
+
+/* Contact
+-----------------------------------------------------------------*/
+
+.google-map{
+    height: 550px;
+    min-height: 80vh;
+    width: 100%;
+    position: relative;
+    filter: grayscale(100%);
+
+    iframe{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .shadow-circle{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        transform: translateX(-50%) translateY(-50%);
+        pointer-events: none;
+    }
+}
+
+.contact{
+
+    label{
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    input,
+    textarea{
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        background: transparent;
+        padding-bottom: 15px;
+    }
+
+    button{
+        padding: 14px 40px;
+        background: #141414;
+        border: 0;
+        color: #fff;
+        transition: all .4s;
+
+        svg{
+            width: 18px;
+            margin-left: 10px;
+            
+            path{
+                transition: all .4s;
+            }
+        }
+
+        &:hover{
+            background: $main_color;
+            color: #141414;
+
+            svg{
+
+                path{
+                    stroke: #141414;
+                }
+            }
+        }
+    }
+
+    .info{
+
+        li{
+            display: flex;
+            align-items: center;
+        }
+
+        .icon{
+            font-size: 30px;
+            margin-right: 15px;
+        }
+    }
+}
+

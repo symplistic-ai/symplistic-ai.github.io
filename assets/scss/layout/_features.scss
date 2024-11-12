@@ -1,0 +1,114 @@
+
+/* Features
+-----------------------------------------------------------------*/
+
+.accordion{
+
+    .item{
+
+        &:first-of-type{
+
+            .title{
+                border-top: 1px solid rgba(255,255,255,.1);
+            }
+        }
+    }
+
+    .title{
+        padding: 25px 0;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        cursor: pointer;
+        position: relative;
+
+        .ico{
+            position: absolute;
+            bottom: 30px;
+            right: 15px;
+        }
+    }
+
+    .accordion-info{
+        display: none;
+        padding: 25px 0;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .active{
+
+        .title{
+
+            .ico{
+                transform: rotate(45deg);
+            }
+        }
+
+        .accordion-info{
+            display: block;
+        }
+    }
+}
+
+.list-arrow{
+
+    li{
+
+        .icon{
+            margin-right: 10px;
+        }
+    }
+}
+
+.list-arrow2{
+
+    li{
+
+        .icon{
+            width: 15px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.dot-list{
+
+    li{
+        position: relative;
+        padding-left: 15px;
+
+        &:before{
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            background: #fff;
+        }
+    }
+}
+
+.text-dark{
+
+    .dot-list{
+
+        li{
+
+            &:before{
+                background: $main_bg;
+            }
+        }
+    }
+}
+
+#tabs-fade,
+#tabs{
+
+    .tab-content{
+        display: none;
+
+        &.current{
+            display: block;
+        }
+    }
+}

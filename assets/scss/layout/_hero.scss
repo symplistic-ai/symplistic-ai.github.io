@@ -1,0 +1,270 @@
+
+/* Hero
+-----------------------------------------------------------------*/
+
+.why-us{
+    position: relative;
+
+    .sec-head{
+
+        .text{
+            position: relative;
+
+            .img-vector{
+                position: absolute;
+                top: 10%;
+                right: 30%;
+                width: 80px;
+            }
+
+            .sub-font{
+                font-size: 170px;
+                font-weight: 700;
+                line-height: 1.1;
+                opacity: .1;
+            }
+        }
+    }
+
+    .container{
+        position: relative;
+    }
+
+    .img-top-left{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 550px;
+        height: 400px;
+        transform: translateX(-85%);
+    }
+
+    .img-top-right{
+        position: absolute;
+        right: 0;
+        top: 140px;
+        width: 400px;
+        height: 220px;
+        transform: translateX(85%);
+    }
+}
+
+.skills-box {
+
+	.skill-progress {
+		height: 5px;
+		background-color: rgba(0,0,0,.05);
+		position: relative;
+
+		.progres {
+			position: absolute;
+			height: 100%;
+			width: 40%;
+			top: 0;
+			left: 0;
+			background: #141414;
+			transition: all 1.5s;
+		}
+	}
+}
+
+.faqs{
+
+    .main-marq{
+
+        &:after{
+            display: none;
+        }
+
+        h4{
+            font-size: 250px;
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .icon{
+            margin-left: 50px;
+            display: flex;
+            align-items: center;
+
+            img{
+                width: 100px;
+            }
+        }
+    }
+
+    .accordion-item{
+        border: 0;
+        margin-bottom: 30px;
+    
+        &:last-of-type{
+            margin-bottom: 0;
+        }
+    }
+    
+    .accordion-header{
+    
+        .accordion-button{
+            background: transparent;
+            font-size: 20px;
+            font-weight: 700;
+            color: inherit;
+            padding: 20px;
+            position: relative;
+            border: 1px solid rgba(0,0,0,.05);
+    
+            .icon{
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 20px;
+                border-left: 1px solid rgba(0,0,0,.05);
+    
+                svg{
+                    opacity: .3;
+                }
+            }
+    
+            &:after{
+                display: none;
+            }
+        
+            &:focus{
+                outline: none !important;
+                box-shadow: none;
+            }
+    
+            &:not(.collapsed){
+                box-shadow: none;
+    
+                .icon{
+    
+                    svg{
+                        transform: rotate(90deg);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    
+    .accordion-body{
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 30px 30px 0 rgba(0,0,0,.05);
+    }
+
+    .imgs{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        min-width: 1920px;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+
+        .img1{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 350px;
+        }
+
+        .img2{
+            position: absolute;
+            bottom: 0;
+            left: 300px;
+            width: 190px;
+            height: 150px;
+        }
+
+        .img3{
+            position: absolute;
+            right: 0;
+            top: 15%;
+            width: 420px;
+            height: 450px;
+        }
+    }
+}
+
+.marq-action{
+
+    .main-marq{
+        padding: 25px 0;
+        margin: -40px 0;
+
+        &:after{
+            display: none;
+        }
+
+        h4{
+            font-weight: 400;
+            font-size: 30px;
+
+            .icon{
+                margin-left: 50px;
+                margin-bottom: 0 !important;
+                display: flex;
+                align-items: center;
+
+                img{
+                    width: 40px;
+                }
+            }
+        }
+
+        &:first-of-type{
+            transform: rotate(3deg);
+        }
+
+        &:last-of-type{
+            transform: rotate(-3deg);
+        }
+    }
+}
+
+.pagination{
+
+    .butn-circle{
+        margin: 0 15px;
+        border-color: rgba(0,0,0,.2);
+
+        &:hover{
+            border-color: #141414;
+        }
+
+        &.prev{
+
+            svg{
+                transform: scaleX(-1);
+            }
+        }
+    }
+
+    .numb{
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: 50%;
+        margin: 0 2px;
+        font-size: 14px;
+        transition: all .4s;
+
+        &:hover{
+            border-color: #141414;
+        }
+
+        &.active{
+            background: #141414;
+            color: #fff;
+        }
+    }
+}

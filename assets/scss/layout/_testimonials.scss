@@ -1,0 +1,101 @@
+
+/* Testimonials
+-----------------------------------------------------------------*/
+
+.testimonials{
+    position: relative;
+
+    .item{
+
+        .circle{
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    .img-main{
+        height: 400px;
+        width: 100%;
+    }
+
+    .testim-swiper{
+        position: relative;
+
+        .swiper-pagination{
+            position: absolute;
+            right: 0;
+            bottom: 15px;
+        }
+    }
+
+    .testim-swiper3{
+        position: relative;
+
+        &:after,
+        &:before{
+            content: '';
+            width: 55vw;
+            height: 55vw;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,.1);
+            position: absolute;
+            left: -5%;
+            top: -40%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        &:before{
+            left: 50%;
+            top: 0;
+        }
+
+        .swiper-wrapper{
+            padding-bottom: 60px;
+        }
+
+        .item{
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 30px 30px rgba(0,0,0,.05);
+            background: #fff;
+        }
+
+        .swiper-pagination{
+            position: relative;
+        }
+    }
+}
+
+.swiper-pagination{
+
+    .swiper-pagination-bullet{
+        width: 5px;
+        height: 5px;
+        background: #141414;
+        border-radius: 50%;
+        margin: 0 10px;
+        position: relative;
+
+        &:after{
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid #141414;
+            border-radius: 50%;
+            opacity: 0;
+        }
+    }
+
+    .swiper-pagination-bullet-active{
+
+        &:after{
+            opacity: 1;
+        }
+    }
+}
+
+
