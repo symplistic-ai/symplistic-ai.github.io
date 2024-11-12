@@ -73,6 +73,15 @@
                     margin-bottom: -25px;
                 }
 
+                @media (max-width: 576px) {
+                    .logo-navbar {
+                        width: 120px !important; /* Adjust size */
+                        height: auto !important;
+                        margin-top: -10px !important;
+                        margin-bottom: -10px !important;
+                    }
+                }
+
                 .footer-navbar {
                     width: 300px;
                     height: 100px;
@@ -123,6 +132,14 @@
                             font-family: 'Montserrat', sans-serif;
                             font-weight: 900;
                             font-size: 70px; 
+                        }
+
+                        @media (max-width: 576px) {
+                            h1.display-3 {
+                                font-family: 'Montserrat', sans-serif;
+                                font-weight: 900;
+                                font-size: calc(1.525rem + 3.3vw); 
+                            }
                         }
                     </style>
                     <h2 class="fs-5 text-muted fw-light lh-base">We help you create Websites and Apps that elevate your brand, increase your online presence, and define your company!</h2>
