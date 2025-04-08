@@ -2269,7 +2269,7 @@ body.loaded {
         margin-left: 0; }
 
 .navbar {
-  position: absolute;
+  position: sticky;
   left: 0;
   top: 0;
   padding: 0;
@@ -2277,7 +2277,13 @@ body.loaded {
   width: 100%;
   background: transparent;
   border-bottom: 2px solid transparent;
-  z-index: 999; }
+  z-index: 9990; }
+  .navbar.sticky {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    background-color: black !important;
+  }
   .navbar.static {
     position: relative !important; }
     .navbar.static.nav-scroll {
@@ -3407,7 +3413,7 @@ footer {
       width: 100%;
       padding: 15px; }
   footer .sub-footer {
-    background: #070707; }
+    background: black; }
     footer .sub-footer .slink a {
       padding-right: 30px;
       margin-right: 30px;
@@ -6490,16 +6496,17 @@ h3.footer-text-lg {
   transform: translateY(-2px);
 }
 
-/* Mobile - stack buttons */
 @media (max-width: 576px) {
   .hero-buttons {
     flex-direction: column;
     align-items: center;
+    margin-top: 20px !important;
   }
 
   .hero-btn {
     width: 100%;
     max-width: 280px;
     text-align: center;
+    margin: 1px 0;
   }
 }
