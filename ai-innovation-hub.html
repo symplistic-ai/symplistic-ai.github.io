@@ -1,0 +1,182 @@
+<!-- AI Innovation Hub Page - Interactive Cloud Experience with Floating Doors -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Innovation Hub | symplistic.ai</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hanken Grotesk', sans-serif;
+      background-color: black;
+      overflow-x: hidden;
+      color: white;
+      height: 100vh;
+      overflow-y: scroll;
+    }
+
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .hub-content {
+      position: relative;
+      z-index: 10;
+      height: 400vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 20vh;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 100vh;
+      max-width: 700px;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 200;
+      margin-bottom: 1rem;
+    }
+
+    .intro-description {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      opacity: 0.85;
+    }
+
+    .door-label {
+      position: absolute;
+      width: 160px;
+      height: 280px;
+      background: linear-gradient(180deg, #fff, #ddd);
+      color: black;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      border: 3px solid #222;
+    }
+
+    .door-label:hover {
+      transform: scale(1.05);
+      background-color: #00ffd8;
+      color: black;
+      box-shadow: 0 0 50px rgba(0, 255, 216, 0.4);
+    }
+
+    .door-enable {
+      left: 20%;
+      top: 130vh;
+    }
+
+    .door-workshop {
+      right: 20%;
+      top: 200vh;
+    }
+
+    .door-co-create {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 280vh;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="hub-content">
+    <div class="hero-section">
+      <h1 class="hero-title">AI Innovation Hub</h1>
+      <p class="intro-description">
+        We collaborate with clients to design, prototype, and validate AI solutions through focused pilot programs.
+        Our tailored enablement services — including workshops and training — help teams adopt and apply AI with confidence.
+      </p>
+    </div>
+    <div class="door-label door-enable">Enablement & Training</div>
+    <div class="door-label door-workshop">AI Workshop</div>
+    <div class="door-label door-co-create">Co-Create With Us</div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'https://cdn.skypack.dev/three@0.152.2';
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x000000, 5, 1000);
+
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 3000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+    scene.add(ambientLight);
+
+    const cloudTexture = new THREE.TextureLoader().load('assets/imgs/clouds-removebg-preview.png');
+
+    function createCloud(x, y, z, scale = 100) {
+      const geometry = new THREE.PlaneGeometry(scale * 1.6, scale);
+      const material = new THREE.MeshLambertMaterial({
+        map: cloudTexture,
+        transparent: true,
+        depthWrite: false,
+        opacity: 0.9,
+        side: THREE.DoubleSide
+      });
+      const cloud = new THREE.Mesh(geometry, material);
+      cloud.position.set(x, y, z);
+      cloud.rotation.x = -Math.PI / 2;
+      return cloud;
+    }
+
+    for (let i = 0; i < 50; i++) {
+      const x = Math.random() * 600 - 300;
+      const y = 0;
+      const z = -i * 60;
+      scene.add(createCloud(x, y, z, Math.random() * 80 + 60));
+    }
+
+    let targetScroll = 0;
+    let currentScroll = 0;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      targetScroll = window.scrollY;
+      currentScroll += (targetScroll - currentScroll) * 0.05;
+      camera.position.z = currentScroll * -0.02;
+      camera.position.y = 10;
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+
+</html>

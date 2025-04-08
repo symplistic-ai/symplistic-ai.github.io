@@ -6278,11 +6278,22 @@ footer.sm-footer .social-text a {
   margin-bottom: -38px !important;
 }
 
+@media (max-width: 768px) {
+  .footer-logo {
+    width: 100% !important;
+    height: 100% !important;
+    margin-bottom: 98px !important;
+    margin-top: -100px !important;
+
+  }
+}
+
 
 
 
 
 /* services button */
+
 
 .services-button-white {
   background-color: transparent;
@@ -6344,6 +6355,7 @@ h3.footer-text-lg {
   cursor: pointer;
   text-decoration: none;
   margin-top: 20px;
+  width: 50% !important;
 }
 
 .services-button-white:hover {
@@ -6359,6 +6371,14 @@ h3.footer-text-lg {
 /* header */
 .hero-section {
   background-color: black; color: white; min-height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
   @media (max-width: 768px) {
@@ -6411,7 +6431,7 @@ h3.footer-text-lg {
     
       .services-button-white {
         width: 100%;
-        max-width: 280px;
+        text-align: center;
       }
 
     .ring {
@@ -6429,3 +6449,57 @@ h3.footer-text-lg {
     }
   }
   
+
+  /* heading services */
+  .heading-services {
+    color: white !important;
+    font-size: 90px !important;
+    font-weight: 100 !important; /* assuming fw-100 is thin */
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .heading-services {
+      font-size: 68px !important;
+      color: white !important;
+      font-weight: 100 !important;
+      text-align: center;
+    }
+  }
+
+
+
+  /* Button Style */
+.hero-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white !important;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 30px;
+}
+
+.hero-btn:hover {
+  background-color: #0000cc;
+  transform: translateY(-2px);
+}
+
+/* Mobile - stack buttons */
+@media (max-width: 576px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+}
