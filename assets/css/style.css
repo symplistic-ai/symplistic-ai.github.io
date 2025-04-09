@@ -6367,8 +6367,8 @@ h3.footer-text-lg {
 }
 
 .services-button-white:hover {
-  background-color: white;
-  color: black !important;
+  background-color: #0000ef;
+  color: white !important;
 }
 
 .navlogo {
