@@ -13,6 +13,9 @@
         <meta name="description" content="symplistic.ai is an AI company based in Bonita Springs, Florida, specializing in Agentic AI, Professional Services, and hosts an AI Innovation Hub for businesses.">
     
         <meta name="author" content="symplistic.ai">
+        
+        <!-- Meta refresh redirect for www to apex domain -->
+        <meta http-equiv="refresh" content="0;url=https://symplistic.ai" id="www-redirect">
     
         <!-- Open Graph for Social / iMessage -->
         <meta property="og:title" content="symplistic.ai | Home">
@@ -50,16 +53,33 @@
         gtag('config', 'G-5J9FHSZSSJ');
         </script>
     
-    </head>
-
+    <!-- Redirect www to apex domain with HTTPS -->
     <script>
-        if (location.hostname === 'www.symplistic.ai') {
-          const url = new URL(location.href);
-          url.protocol = 'https:';           // enforce HTTPS
-          url.hostname = 'symplistic.ai';    // switch to apex
-          location.replace(url.toString());  //  "no back button" style redirect
-        }
-      </script>
+        (function() {
+            // Remove meta refresh redirect if not needed
+            const metaRedirect = document.getElementById('www-redirect');
+            if (metaRedirect && location.hostname !== 'www.symplistic.ai') {
+                metaRedirect.remove();
+            }
+            
+            // Check if we're on www subdomain
+            if (location.hostname === 'www.symplistic.ai') {
+                // Create new URL with apex domain and HTTPS
+                const newUrl = location.href.replace('www.symplistic.ai', 'symplistic.ai').replace('http:', 'https:');
+                
+                // Force redirect to HTTPS apex domain
+                if (location.href !== newUrl) {
+                    location.replace(newUrl);
+                }
+            }
+            
+            // Also handle any HTTP requests to apex domain
+            if (location.protocol === 'http:' && location.hostname === 'symplistic.ai') {
+                location.replace(location.href.replace('http:', 'https:')); 
+            }
+        })();
+    </script>
+</head>
 
 <body class="creative-agency" style="background-color: black !important;">
 
