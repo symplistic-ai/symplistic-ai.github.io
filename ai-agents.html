@@ -101,12 +101,65 @@
 
                 <div class="ai-navbar">
                     <nav class="ai-nav-wrapper">
+                      <a href="#allindustries">All Industries</a>
                       <a href="#retailbankingagents">Retail Banking Agents</a>
                       <a href="#commercialbankingagents">Commercial Banking Agents</a>
                       <a href="#capitalmarketsagents">Capital Markets Agents</a>
                     </nav>
                   </div>
                 
+                <!-- ==================== Start All Industries Section ==================== -->
+                
+                <section class="bg-black section-padding position-relative" id="allindustries" style="z-index: 1;">
+                    <div class="container position-re">
+                        <h1 class="sub-font js-splittext-lines text-center mb-80 fw-100" style="font-size: 70px !important; color: white; font-weight: 100 !important;">
+                            All Industries
+                        </h1>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="cont">
+                                    <h6 class="md-title mb-15 wow fadeInUp" data-wow-delay="0.4s" style="color: white;">// All Industries</h6>
+                                    <h2 class="js-splittext-lines fw-100" style="color: white; font-weight: 100 !important;"><a href="ai-agents/contentiq/contentiq.html" style="color: white; text-decoration: none;">ContentIQ</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-30">
+                            <div class="col-lg-5">
+                                <div class="img mr-30">
+                                    <img src="./assets/imgs/contentiq.png" style="border-radius:1.5rem!important; margin-top: 80px; margin-left: 10px;" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-5 offset-lg-1">
+                                <div class="text mt-30">
+                                    <p style="color: white;">ContentIQ is our flagship AI agent platform that transforms how organizations create, manage, and optimize content across all industries. From healthcare to finance, retail to manufacturing, ContentIQ adapts to your industry's unique needs and regulatory requirements.</p>
+                                    <br>
+                                    <h5 style="color: white"> Key Features:</h5>
+                                    <p style="color: white;">
+                                       
+                                        <br>
+                                        • Industry-specific content generation and optimization
+                                        <br>
+                                        • Automated compliance and regulatory content management
+                                        <br>
+                                        • Multi-channel content distribution and personalization
+                                        <br>
+                                        • Real-time content performance analytics and insights
+                                        <br>
+                                        • Intelligent content workflow automation
+                                        <br>
+                                        • Cross-platform content synchronization and version control
+                                        <br>
+                                        <br>
+                                        Whether you're in healthcare managing patient communications, finance creating regulatory reports, or retail optimizing product descriptions, ContentIQ scales your content operations while maintaining quality and compliance.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== End All Industries Section ==================== -->
+
                 <section class="bg-black section-padding position-relative" id="retailbankingagents" style="z-index: 1;">
                     <!-- <div class="lg-bold-head text-center mb-80"> -->
                         <!-- <h1 class="sub-font js-splittext-lines text-center mb-80 fw-100" style="font-size: 70px !important; color: white; font-weight: 100 !important;">
@@ -849,6 +902,7 @@
   display: flex;
 }
 
+#allindustries,
 #retailbankingagents,
 #commercialbankingagents,
 #capitalmarketsagents {
@@ -873,7 +927,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const sections = document.querySelectorAll('#retailbankingagents, #commercialbankingagents, #capitalmarketsagents');
+      const sections = document.querySelectorAll('#allindustries, #retailbankingagents, #commercialbankingagents, #capitalmarketsagents');
       const navLinks = document.querySelectorAll('.ai-nav-wrapper a');
   
       function onScroll() {
@@ -900,6 +954,14 @@
   
       window.addEventListener('scroll', onScroll);
   
+      // Set All Industries as default active on page load
+      navLinks.forEach((link) => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#allindustries') {
+          link.classList.add('active');
+        }
+      });
+
       // Trigger on load in case user refreshes mid-scroll
       onScroll();
     });

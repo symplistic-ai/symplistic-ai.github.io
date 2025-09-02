@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="keywords" content="ContentIQ, AI agent, conversational AI, knowledge base, document intelligence, RAG, enterprise content, symplistic.ai">
+
+    <meta name="description" content="ContentIQ transforms websites, documents, and knowledge bases into smart, interactive conversational agents. Reduce search time and increase productivity with AI-powered content intelligence.">
+
+    <meta name="author" content="symplistic.ai">
+
+    <!-- Title  -->
+    <title>ContentIQ | Transform Content into Conversations | symplistic.ai</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../../assets/imgs/blue-favicon-final.png" sizes="32x32">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Plugins -->
+    <link rel="stylesheet" href="../../assets/css/plugins.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5J9FHSZSSJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5J9FHSZSSJ');
+    </script>
+
+    <style>
+        body { background-color: black !important; }
+        
+        .contentiq-hero {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 200;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .hero-btn:hover {
+            background-color: #0000ef;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .hero-btn.primary {
+            background-color: #0000ef;
+            border-color: #0000ef;
+        }
+
+        .hero-btn.primary:hover {
+            background-color: #0000cc;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-dark {
+            background: #0a0a0a;
+        }
+
+        .section-black {
+            background: #000;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 200;
+            color: white;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            color: #ccc;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .problem-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #555;
+            box-shadow: 0 10px 30px rgba(85, 85, 85, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 4rem 0;
+        }
+
+        .capability-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #555, #777);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .capability-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .capability-card:hover {
+            transform: translateY(-5px);
+            border-color: #555;
+            box-shadow: 0 10px 30px rgba(85, 85, 85, 0.1);
+        }
+
+        .capability-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0000ef, #0066ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .capability-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .capability-description {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 4rem 0;
+        }
+
+        .use-case-card {
+            background: #111;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-3px);
+            border-color: #555;
+            box-shadow: 0 8px 25px rgba(85, 85, 85, 0.1);
+        }
+
+        .use-case-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .use-case-example {
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .use-case-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .value-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 4rem 0;
+        }
+
+        .metric-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: #555;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 200;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 0, 239, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .quote-box {
+            background: #1a1a1a;
+            border-left: 4px solid #333;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .quote-text {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .quote-source {
+            color: #ccc;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.4rem; }
+            .hero-description { font-size: 1.1rem; }
+            .section-title { font-size: 2.5rem; }
+            .capabilities-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .hero-btn { width: 100%; max-width: 300px; }
+        }
+    </style>
+</head>
+
+<body class="creative-agency" style="background-color: black !important;">
+
+    <!-- ==================== Start Loading ==================== -->
+    <div class="loader-wrap">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+        </svg>
+        <div class="loader-wrap-heading">
+            <div class="load-text">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+            </div>
+        </div>
+    </div>
+    <!-- ==================== End Loading ==================== -->
+
+    <div class="cursor"></div>
+
+    <!-- ==================== Start Navbar ==================== -->
+    <div id="nav-reusable-container"></div>
+    <!-- ==================== End Navbar ==================== -->
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main>
+                <!-- ==================== Start Hero Section ==================== -->
+                <section class="contentiq-hero">
+                    <div class="hero-content">
+                        <h1 class="hero-title">symplistic.ContentIQ</h1>
+                        <p class="hero-description">
+                            An AI agent that transforms documents, cloud content platforms (SharePoint, Box, OneDrive), behind-the-firewall knowledge, and websites into trusted, conversational AI agents in minutes. Transforms static documents into intelligent, contextual conversations.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#capabilities" class="hero-btn">Explore Capabilities</a>
+                            <a href="../../ai-agents/contentiq/Documentation.html" class="hero-btn">View Documentation</a>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End Hero Section ==================== -->
+
+                <!-- ==================== Start Problem Section ==================== -->
+                <section class="section section-dark">
+                    <div class="container-custom">
+                        <h2 class="section-title">The Problem</h2>
+                        <h3 class="section-subtitle">Enterprise Content is Growing. But It's Not Working.</h3>
+                        
+                        <div class="problem-stats">
+                            <div class="stat-card">
+                                <div class="stat-number">65%</div>
+                                <div class="stat-text">of workers report wasting time searching for information each day</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">15-25%</div>
+                                <div class="stat-text">of support agent time wasted searching internal documents while on calls</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">20%</div>
+                                <div class="stat-text">of knowledge workers can find content they need in under 2 minutes</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">80%</div>
+                                <div class="stat-text">of company knowledge resides in documents that aren't conveniently accessible</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End Problem Section ==================== -->
+
+                <!-- ==================== Start What is ContentIQ Section ==================== -->
+                <section class="section section-black">
+                    <div class="container-custom">
+                        <h2 class="section-title">What is symplistic.ContentIQ</h2>
+                        <h3 class="section-subtitle">Your Entire Content Universe. Made Conversational</h3>
+                        
+                        <p style="color: #ccc; font-size: 1.2rem; text-align: center; margin-bottom: 3rem; line-height: 1.6;">
+                            ContentIQ ingests any content source (documents, cloud content platforms such as SharePoint, Box, OneDrive, behind-the-firewall knowledge, and websites) and transforms them into intelligent conversational agents.
+                        </p>
+
+                        <div class="capabilities-grid">
+                            <div class="capability-card">
+                                <div class="capability-icon">🕷️</div>
+                                <h3 class="capability-title">Crawls and Cleans Content</h3>
+                                <p class="capability-description">Via scraper/API/upload to ensure comprehensive content ingestion from all sources.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🧠</div>
+                                <h3 class="capability-title">Chunks and Vectorizes</h3>
+                                <p class="capability-description">For retrieval using LLM-based embeddings, making content semantically searchable.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">💬</div>
+                                <h3 class="capability-title">RAG-Powered Answers</h3>
+                                <p class="capability-description">Uses Retrieval Augmented Generation to generate answers with citations and source attribution.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🎨</div>
+                                <h3 class="capability-title">Flexible UI Options</h3>
+                                <p class="capability-description">Text & voice chat UI, or embeds as a white-labeled widget in your existing systems.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🔄</div>
+                                <h3 class="capability-title">Auto-Sync & Improve</h3>
+                                <p class="capability-description">Syncs automatically with content updates, identifies gaps, and improves over time.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">📊</div>
+                                <h3 class="capability-title">Content Insights</h3>
+                                <p class="capability-description">Provides valuable insights about your content performance and usage patterns.</p>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 3rem;">
+                            <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">Replace static pages with smart conversations. Everywhere.</h3>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End What is ContentIQ Section ==================== -->
+
+                <!-- ==================== Start Core Capabilities Section ==================== -->
+                <section class="section section-dark" id="capabilities">
+                    <div class="container-custom">
+                        <h2 class="section-title">Core Capabilities</h2>
+                        <h3 class="section-subtitle">Foundational Capabilities to Build User Trust</h3>
+                        
+                        <div class="capabilities-grid">
+                            <div class="capability-card">
+                                <div class="capability-icon">⚡</div>
+                                <h3 class="capability-title">Instant Agent Creation</h3>
+                                <p class="capability-description">Connect URLs, documents, and data repositories to turn them into a smart conversational agent instantly.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🧩</div>
+                                <h3 class="capability-title">Smart Chunking + Vectorization</h3>
+                                <p class="capability-description">Semantically grouped, retrieval-ready content processing for optimal search and response generation.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">❓</div>
+                                <h3 class="capability-title">Real-Time FAQ Generation</h3>
+                                <p class="capability-description">Learn from user queries to automatically improve documentation and create comprehensive FAQs.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🔍</div>
+                                <h3 class="capability-title">Content Gap Finder</h3>
+                                <p class="capability-description">Detects stale or missing data to help maintain comprehensive and up-to-date knowledge bases.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">📚</div>
+                                <h3 class="capability-title">Citation-Based Answers</h3>
+                                <p class="capability-description">Every response is traceable to a source, ensuring transparency and building user trust.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">👤</div>
+                                <h3 class="capability-title">Personalized UX</h3>
+                                <p class="capability-description">Varies by user role, region, and behavior to deliver tailored experiences for each user.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">📝</div>
+                                <h3 class="capability-title">Content Intelligence</h3>
+                                <p class="capability-description">Summarize, extract key info, create blog/social/presentations from existing content.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🔀</div>
+                                <h3 class="capability-title">Smart Redirects</h3>
+                                <p class="capability-description">If answer is missing, intelligently route to live chat or contact page for seamless user experience.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🎭</div>
+                                <h3 class="capability-title">Multi-modal Support</h3>
+                                <p class="capability-description">Tables, PDFs, images, OCR, video snippets - handle any content format with ease.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End Core Capabilities Section ==================== -->
+
+                <!-- ==================== Start Use Cases Section ==================== -->
+                <section class="section section-black">
+                    <div class="container-custom">
+                        <h2 class="section-title">Example Use Cases</h2>
+                        <h3 class="section-subtitle">Use Cases by Function</h3>
+                        
+                        <div class="use-cases-grid">
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Personalized Financial Intelligence</h4>
+                                <div class="use-case-example">"What's the best credit card available for travel?"</div>
+                                <p class="use-case-description">Retail Banking Agent Assist providing personalized financial guidance and product recommendations.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Legal Compliance</h4>
+                                <div class="use-case-example">"Summarize GDPR clauses impacting customer data use"</div>
+                                <p class="use-case-description">Automated legal document analysis and compliance guidance for regulatory requirements.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">HR Assistant</h4>
+                                <div class="use-case-example">"What's the leave policy for part-time employees in California?"</div>
+                                <p class="use-case-description">Instant access to HR policies and procedures with location-specific information.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Customer Support</h4>
+                                <div class="use-case-example">"Do your plans allow downgrading mid-cycle?"</div>
+                                <p class="use-case-description">Quick resolution of customer inquiries with accurate policy information.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Product/Marketing</h4>
+                                <div class="use-case-example">"Extract quotes from our product documents for social posts"</div>
+                                <p class="use-case-description">Content repurposing and marketing material generation from existing documentation.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Insurance Claims</h4>
+                                <div class="use-case-example">"Which claim types qualify for express processing under Plan C?"</div>
+                                <p class="use-case-description">Streamlined claims processing with instant policy and procedure guidance.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Higher Ed Portal</h4>
+                                <div class="use-case-example">"What are the transfer credit policies for international students?"</div>
+                                <p class="use-case-description">Student services automation with comprehensive academic policy information.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">SaaS Onboarding</h4>
+                                <div class="use-case-example">"Walk me through API key setup for our sandbox environment"</div>
+                                <p class="use-case-description">Guided technical onboarding with step-by-step implementation assistance.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Procurement Officer Assist</h4>
+                                <div class="use-case-example">"Who's our preferred vendor for cloud storage and what's the SLA?"</div>
+                                <p class="use-case-description">Procurement decision support with vendor and contract information.</p>
+                            </div>
+
+                            <div class="use-case-card">
+                                <h4 class="use-case-title">Healthcare Staff Agent</h4>
+                                <div class="use-case-example">"What steps must be followed for pre-op patient clearance under policy 43.2?"</div>
+                                <p class="use-case-description">Medical procedure guidance with specific policy and protocol information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End Use Cases Section ==================== -->
+
+                <!-- ==================== Start Business Value Section ==================== -->
+                <section class="section section-dark">
+                    <div class="container-custom">
+                        <h2 class="section-title">Business Value at Scale</h2>
+                        
+                        <div class="value-metrics">
+                            <div class="metric-card">
+                                <div class="metric-value">4.5 hrs</div>
+                                <div class="metric-label">saved per week per employee through reduced search time</div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-value">20-40%</div>
+                                <div class="metric-label">support ticket deflection with conversational AI</div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-value">14-15%</div>
+                                <div class="metric-label">boost in support agent throughput</div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">faster ticket resolution times</div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-value">+9.4%</div>
+                                <div class="metric-label">revenue per user increase</div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-value">+5%</div>
+                                <div class="metric-label">overall productivity increase</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End Business Value Section ==================== -->
+
+                <!-- ==================== Start CTA Section ==================== -->
+                <section class="section cta-section">
+                    <div class="container-custom">
+                        <h2 class="cta-title">Transform Your Content Today</h2>
+                        <p class="cta-description">
+                            Join leading organizations who trust ContentIQ to transform their static content into intelligent, conversational experiences. 
+                            Reduce search time, increase productivity, and unlock the full value of your content investments.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="../../page-contact.html" class="hero-btn">Get Started</a>
+                            <a href="../../ai-agents.html" class="hero-btn">View All Agents</a>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End CTA Section ==================== -->
+
+            </main>
+
+            <!-- ==================== Start Footer ==================== -->
+            <div id="footer-reusable-container"></div>
+            <!-- ==================== End Footer ==================== -->
+
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../../assets/js/jquery-migrate-3.4.0.min.js"></script>
+
+    <!-- plugins -->
+    <script src="../../assets/js/plugins.js"></script>
+
+    <script src="../../assets/js/gsap.min.js"></script>
+    <script src="../../assets/js/ScrollSmoother.min.js"></script>
+    <script src="../../assets/js/ScrollTrigger.min.js"></script>
+    <script src="../../assets/js/SplitText.min.js"></script>
+
+    <!-- custom scripts -->
+    <script src="../../assets/js/scripts.js"></script>
+
+    <!-- reusable -->
+    <script src="../../assets/js/reusable.js"></script>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards for animation
+        document.querySelectorAll('.capability-card, .use-case-card, .stat-card, .metric-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+
+</body>
+
+</html>

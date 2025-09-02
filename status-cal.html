@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="keywords" content="ContentIQ status history, system status calendar, incident history, symplistic.ai, service monitoring">
+
+    <meta name="description" content="ContentIQ Status History - View historical status updates and incidents across all ContentIQ services with interactive calendar interface.">
+
+    <meta name="author" content="symplistic.ai">
+
+    <!-- Open Graph for Social / iMessage -->
+    <meta property="og:title" content="ContentIQ Status History | symplistic.ai">
+    <meta property="og:description" content="View historical status updates and incidents across all ContentIQ services with interactive calendar interface.">
+    <meta property="og:image" content="https://symplistic.ai/assets/imgs/blue-favicon-final.png">
+    <meta property="og:url" content="https://symplistic.ai/status-cal.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="symplistic.ai">
+
+    <!-- Twitter Card Support -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ContentIQ Status History | symplistic.ai">
+    <meta name="twitter:description" content="View historical status updates and incidents across all ContentIQ services with interactive calendar interface.">
+    <meta name="twitter:image" content="https://symplistic.ai/assets/imgs/blue-favicon-final.png">
+
+    <!-- Title -->
+    <title>ContentIQ Status History | symplistic.ai</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/imgs/blue-favicon-final.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/imgs/blue-favicon-final.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="assets/imgs/blue-favicon-final.png">
+
+    <!-- Fonts & Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5J9FHSZSSJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5J9FHSZSSJ');
+    </script>
+
+    <style>
+        /* Status calendar specific styles */
+        .status-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .status-header { text-align: center; margin-bottom: 60px; }
+        .status-header h1 { font-size: 3.5rem; font-weight: 200; color: white; margin-bottom: 1.5rem; }
+        .status-header p { font-size: 1.3rem; color: #ccc; line-height: 1.6; }
+        .back-btn { background: transparent; color: white; border: 1px solid white; padding: 12px 24px; border-radius: 10px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; text-decoration: none; display: inline-block; margin-top: 30px; }
+        .back-btn:hover { background-color: #0000cc; transform: translateY(-2px); }
+        
+        .calendar-controls { background: #252525; padding: 30px; border-radius: 15px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 25px; }
+        .month-selector { display: flex; align-items: center; gap: 20px; }
+        .nav-btn { background: #333; color: white; border: none; padding: 12px 18px; border-radius: 8px; cursor: pointer; font-size: 1.3rem; transition: all 0.3s ease; }
+        .nav-btn:hover { background: #555; transform: translateY(-2px); }
+        .nav-btn:disabled { background: #333; cursor: not-allowed; opacity: 0.5; }
+        .current-month { font-size: 1.8rem; font-weight: 600; color: white; min-width: 250px; text-align: center; }
+        .view-toggle { display: flex; gap: 15px; }
+        .view-btn { background: #1a1a1a; color: #ccc; border: 1px solid #333; padding: 12px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
+        .view-btn.active { background: #333; color: white; border-color: #333; }
+        .view-btn:hover { background: #333; color: white; }
+        
+        .calendar { background: #252525; padding: 40px; border-radius: 15px; margin-bottom: 40px; }
+        .calendar-header { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; margin-bottom: 25px; }
+        .calendar-header > div { text-align: center; font-weight: 600; color: #ccc; padding: 15px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; }
+        .calendar-day { aspect-ratio: 1; border: 1px solid #333; border-radius: 10px; padding: 15px; cursor: pointer; transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; justify-content: space-between; background: #1a1a1a; }
+        .calendar-day:hover { border-color: #555; box-shadow: 0 4px 15px rgba(85, 85, 85, 0.2); transform: translateY(-2px); }
+        .calendar-day.other-month { background: #0a0a0a; color: #666; }
+        .calendar-day.today { background: rgba(85, 85, 85, 0.1); border-color: #555; }
+        .day-number { font-weight: 600; font-size: 1.2rem; color: white; }
+        .status-indicators { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+        .status-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #1a1a1a; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+        .status-dot.operational { background: #28a745; }
+        .status-dot.maintenance { background: #0000ef; }
+        .status-dot.incident { background: #ffc107; }
+        .status-dot.outage { background: #dc3545; }
+        .status-dot.notice { background: #6f42c1; }
+        .event-count { position: absolute; top: 8px; right: 8px; background: #333; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; }
+        
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
+        .modal-content { background-color: #252525; margin: 5% auto; padding: 40px; border-radius: 15px; width: 90%; max-width: 700px; max-height: 80vh; overflow-y: auto; border: 1px solid #333; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #333; }
+        .modal-title { font-size: 1.8rem; font-weight: 600; color: white; }
+        .close-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #ccc; padding: 5px; transition: color 0.3s ease; }
+        .close-btn:hover { color: white; }
+        .event-list { margin-top: 25px; }
+        .event-item { background: #1a1a1a; padding: 25px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #0000ef; }
+        .event-item.maintenance { border-left-color: #0000ef; }
+        .event-item.incident { border-left-color: #ffc107; }
+        .event-item.outage { border-left-color: #dc3545; }
+        .event-item.notice { border-left-color: #6f42c1; }
+        .event-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .event-type { font-weight: 600; color: white; }
+        .event-time { color: #ccc; font-size: 0.95rem; }
+        .event-description { color: #ccc; line-height: 1.6; }
+        
+        .legend { background: #252525; padding: 30px; border-radius: 15px; }
+        .legend h3 { margin-bottom: 20px; color: white; font-size: 1.5rem; }
+        .legend-items { display: flex; flex-wrap: wrap; gap: 25px; }
+        .legend-item { display: flex; align-items: center; gap: 10px; }
+        .legend-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #1a1a1a; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+        .legend-item span { color: #ccc; font-weight: 500; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .status-container { padding: 20px 15px; }
+            .status-header h1 { font-size: 2.5rem; }
+            .status-header p { font-size: 1.1rem; }
+            .calendar-controls { flex-direction: column; text-align: center; }
+            .month-selector { justify-content: center; }
+            .calendar { padding: 20px; }
+            .calendar-day { padding: 8px; }
+            .day-number { font-size: 1rem; }
+            .status-dot { width: 10px; height: 10px; }
+            .modal-content { padding: 25px; }
+        }
+    </style>
+</head>
+
+<body class="creative-agency" style="background-color: black !important;">
+
+    <!-- ==================== Start Loading ==================== -->
+    <div class="loader-wrap">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+        </svg>
+        <div class="loader-wrap-heading">
+            <div class="load-text">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+            </div>
+        </div>
+    </div>
+    <!-- ==================== End Loading ==================== -->
+
+    <div class="cursor"></div>
+
+    <!-- ==================== Start Navbar ==================== -->
+    <div id="nav-reusable-container"></div>
+    <!-- ==================== End Navbar ==================== -->
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <main>
+                <!-- ==================== Start Status History Header ==================== -->
+                <header class="hero-section position-relative"
+                    style="background-color: black; color: white; min-height: 50vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 999;">
+
+
+
+                    <!-- Main Content -->
+                    <div class="container position-relative" style="z-index: 2; max-width: 800px; margin-top: -70px !important;">
+                        <h1 class="caption-title-header" style="font-size: 4rem; font-weight: 200; color: white;">
+                            ContentIQ Status History
+                        </h1>
+                        View historical status updates and incidents across all services
+                        <br>
+                        <a href="status.html" class="back-btn">← Back to Status</a>
+                    </div>
+                </header>
+                <!-- ==================== End Status History Header ==================== -->
+
+                <!-- ==================== Start Status History Content ==================== -->
+                <section class="bg-black section-padding position-relative" style="z-index: 1;">
+                    <div class="status-container">
+                        <div class="calendar-controls">
+                            <div class="month-selector">
+                                <button class="nav-btn" id="prevMonth">‹</button>
+                                <div class="current-month" id="currentMonth">December 2024</div>
+                                <button class="nav-btn" id="nextMonth">›</button>
+                            </div>
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="month">Month</button>
+                                <button class="view-btn" data-view="week">Week</button>
+                            </div>
+                        </div>
+
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <div>Sun</div>
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar days will be generated here -->
+                            </div>
+                        </div>
+
+                        <div class="legend">
+                            <h3>Status Legend</h3>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <div class="legend-dot operational"></div>
+                                    <span>Operational</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot maintenance"></div>
+                                    <span>Maintenance</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot incident"></div>
+                                    <span>Incident</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot outage"></div>
+                                    <span>Outage</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot notice"></div>
+                                    <span>Notice</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ==================== End Status History Content ==================== -->
+
+            </main>
+
+            <!-- ==================== Start Footer ==================== -->
+            <div id="footer-reusable-container"></div>
+            <!-- ==================== End Footer ==================== -->
+
+        </div>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Event Details</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- Event details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery-migrate-3.4.0.min.js"></script>
+
+    <!-- plugins -->
+    <script src="assets/js/plugins.js"></script>
+
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollSmoother.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+
+    <!-- custom scripts -->
+    <script src="assets/js/scripts.js"></script>
+
+    <!-- reusable -->
+    <script src="assets/js/reusable.js"></script>
+
+    <!-- for nav -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Background Rings */
+        .background-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .ring {
+            position: absolute;
+            width: 400px;
+            opacity: 0.7;
+            mix-blend-mode: screen;
+        }
+
+
+
+        @keyframes float1 {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-60px) rotate(40deg);
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(80px) rotate(-40deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .ring {
+                width: 300px;
+                opacity: 0.5;
+            }
+
+
+
+            .caption-title-header {
+                font-size: 2.5rem !important;
+            }
+        }
+    </style>
+
+    <script>
+        class StatusCalendar {
+            constructor() {
+                this.currentDate = new Date();
+                this.currentView = 'month';
+                this.events = this.generateSampleEvents();
+                this.init();
+            }
+
+            init() {
+                this.renderCalendar();
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                document.getElementById('prevMonth').addEventListener('click', () => this.previousMonth());
+                document.getElementById('nextMonth').addEventListener('click', () => this.nextMonth());
+                document.getElementById('closeModal').addEventListener('click', () => this.closeModal());
+                
+                // View toggle
+                document.querySelectorAll('.view-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentView = e.target.dataset.view;
+                        this.renderCalendar();
+                    });
+                });
+
+                // Close modal when clicking outside
+                window.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('modal')) {
+                        this.closeModal();
+                    }
+                });
+            }
+
+            previousMonth() {
+                this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+                this.renderCalendar();
+            }
+
+            nextMonth() {
+                this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+                this.renderCalendar();
+            }
+
+            renderCalendar() {
+                const month = this.currentDate.getMonth();
+                const year = this.currentDate.getFullYear();
+                
+                document.getElementById('currentMonth').textContent = this.getMonthName(month) + ' ' + year;
+                
+                const calendarGrid = document.getElementById('calendarGrid');
+                calendarGrid.innerHTML = '';
+                
+                const firstDay = new Date(year, month, 1);
+                const lastDay = new Date(year, month + 1, 0);
+                const startDate = new Date(firstDay);
+                startDate.setDate(startDate.getDate() - firstDay.getDay());
+                
+                const today = new Date();
+                
+                for (let i = 0; i < 42; i++) {
+                    const currentDate = new Date(startDate);
+                    currentDate.setDate(startDate.getDate() + i);
+                    
+                    const dayElement = this.createDayElement(currentDate, month, today);
+                    calendarGrid.appendChild(dayElement);
+                }
+            }
+
+            createDayElement(date, currentMonth, today) {
+                const dayDiv = document.createElement('div');
+                const dayNumber = date.getDate();
+                const isCurrentMonth = date.getMonth() === currentMonth;
+                const isToday = this.isSameDate(date, today);
+                
+                dayDiv.className = 'calendar-day';
+                if (!isCurrentMonth) dayDiv.classList.add('other-month');
+                if (isToday) dayDiv.classList.add('today');
+                
+                const dateString = this.formatDate(date);
+                const dayEvents = this.getEventsForDate(dateString);
+                
+                dayDiv.innerHTML = `
+                    <div class="day-number">${dayNumber}</div>
+                    ${dayEvents.length > 0 ? `<div class="event-count">${dayEvents.length}</div>` : ''}
+                    <div class="status-indicators">
+                        ${this.getStatusIndicators(dayEvents)}
+                    </div>
+                `;
+                
+                if (dayEvents.length > 0) {
+                    dayDiv.addEventListener('click', () => this.showEventDetails(dateString, dayEvents));
+                }
+                
+                return dayDiv;
+            }
+
+            getStatusIndicators(events) {
+                const statuses = [...new Set(events.map(e => e.type))];
+                return statuses.map(status => 
+                    `<div class="status-dot ${status}" title="${status}"></div>`
+                ).join('');
+            }
+
+            getEventsForDate(dateString) {
+                return this.events.filter(event => event.date === dateString);
+            }
+
+            showEventDetails(dateString, events) {
+                const modal = document.getElementById('eventModal');
+                const modalTitle = document.getElementById('modalTitle');
+                const modalBody = document.getElementById('modalBody');
+                
+                modalTitle.textContent = `Events for ${this.formatDateForDisplay(dateString)}`;
+                
+                modalBody.innerHTML = events.map(event => `
+                    <div class="event-item ${event.type}">
+                        <div class="event-header">
+                            <span class="event-type">${event.title}</span>
+                            <span class="event-time">${event.time}</span>
+                        </div>
+                        <div class="event-description">${event.description}</div>
+                    </div>
+                `).join('');
+                
+                modal.style.display = 'block';
+            }
+
+            closeModal() {
+                document.getElementById('eventModal').style.display = 'none';
+            }
+
+            formatDate(date) {
+                return date.toISOString().split('T')[0];
+            }
+
+            formatDateForDisplay(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            }
+
+            getMonthName(month) {
+                const months = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+                return months[month];
+            }
+
+            isSameDate(date1, date2) {
+                return date1.toDateString() === date2.toDateString();
+            }
+
+            generateSampleEvents() {
+                return [
+                    {
+                        date: '2024-12-15',
+                        type: 'maintenance',
+                        title: 'Scheduled Maintenance - Ingest Service',
+                        time: '2:00 AM - 4:00 AM EST',
+                        description: 'Planned maintenance window for database optimization and performance improvements.'
+                    },
+                    {
+                        date: '2024-12-15',
+                        type: 'notice',
+                        title: 'New Feature Release',
+                        time: '10:00 AM EST',
+                        description: 'Enhanced analytics dashboard and improved conversation threading capabilities.'
+                    },
+                    {
+                        date: '2024-12-20',
+                        type: 'incident',
+                        title: 'Login Service Degradation',
+                        time: '3:30 PM - 5:15 PM EST',
+                        description: 'Investigating increased login response times. Service remained operational with degraded performance.'
+                    },
+                    {
+                        date: '2024-12-22',
+                        type: 'maintenance',
+                        title: 'Infrastructure Update',
+                        time: '1:00 AM - 3:00 AM EST',
+                        description: 'Routine security patches and infrastructure improvements.'
+                    },
+                    {
+                        date: '2024-12-25',
+                        type: 'notice',
+                        title: 'Holiday Support Schedule',
+                        time: 'All Day',
+                        description: 'Reduced support hours during holiday period. Emergency support remains available.'
+                    }
+                ];
+            }
+        }
+
+        // Initialize the calendar when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new StatusCalendar();
+        });
+    </script>
+
+</body>
+</html>
