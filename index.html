@@ -14,8 +14,7 @@
     
         <meta name="author" content="symplistic.ai">
         
-        <!-- Meta refresh redirect for www to apex domain -->
-        <meta http-equiv="refresh" content="0;url=https://symplistic.ai" id="www-redirect">
+
     
         <!-- Open Graph for Social / iMessage -->
         <meta property="og:title" content="symplistic.ai | Home">
@@ -56,26 +55,23 @@
     <!-- Redirect www to apex domain with HTTPS -->
     <script>
         (function() {
-            // Remove meta refresh redirect if not needed
-            const metaRedirect = document.getElementById('www-redirect');
-            if (metaRedirect && location.hostname !== 'www.symplistic.ai') {
-                metaRedirect.remove();
-            }
-            
-            // Check if we're on www subdomain
+            // Check if we're on www subdomain (regardless of protocol)
             if (location.hostname === 'www.symplistic.ai') {
-                // Create new URL with apex domain and HTTPS
-                const newUrl = location.href.replace('www.symplistic.ai', 'symplistic.ai').replace('http:', 'https:');
+                // Create new URL with apex domain, preserving the current protocol
+                const newUrl = location.href.replace('www.symplistic.ai', 'symplistic.ai');
                 
-                // Force redirect to HTTPS apex domain
+                // Only redirect if the URLs are actually different
                 if (location.href !== newUrl) {
                     location.replace(newUrl);
                 }
             }
             
-            // Also handle any HTTP requests to apex domain
+            // Handle HTTP to HTTPS redirect for apex domain only
             if (location.protocol === 'http:' && location.hostname === 'symplistic.ai') {
-                location.replace(location.href.replace('http:', 'https:')); 
+                const httpsUrl = location.href.replace('http:', 'https:');
+                if (location.href !== httpsUrl) {
+                    location.replace(httpsUrl);
+                }
             }
         })();
     </script>

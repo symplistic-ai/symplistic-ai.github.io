@@ -1,0 +1,15 @@
+# Redirect www to apex domain
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.symplistic\.ai$ [NC]
+RewriteRule ^(.*)$ https://symplistic.ai/$1 [L,R=301]
+
+# Redirect HTTP to HTTPS for apex domain
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^symplistic\.ai$ [NC]
+RewriteRule ^(.*)$ https://symplistic.ai/$1 [L,R=301]
+
+# Security headers
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
