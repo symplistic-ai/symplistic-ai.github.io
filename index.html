@@ -57,41 +57,6 @@
         gtag('config', 'G-5J9FHSZSSJ');
         </script>
     
-    <!-- Bulletproof redirect for www to apex domain -->
-    <script>
-        (function() {
-            console.log('Redirect script running...');
-            console.log('Current hostname:', location.hostname);
-            console.log('Current protocol:', location.protocol);
-            console.log('Current URL:', location.href);
-            
-            // Force redirect for www subdomain - ALWAYS redirect
-            if (location.hostname === 'www.symplistic.ai') {
-                console.log('Redirecting from www to apex domain...');
-                
-                // Build the new URL - force HTTPS and apex domain
-                let newUrl = location.href;
-                newUrl = newUrl.replace('www.symplistic.ai', 'symplistic.ai');
-                newUrl = newUrl.replace('http:', 'https:');
-                
-                console.log('Redirecting to:', newUrl);
-                
-                // Force the redirect immediately
-                window.location.href = newUrl;
-                return; // Stop execution
-            }
-            
-            // Handle HTTP to HTTPS redirect for apex domain
-            if (location.protocol === 'http:' && location.hostname === 'symplistic.ai') {
-                console.log('Redirecting HTTP to HTTPS...');
-                const httpsUrl = location.href.replace('http:', 'https:');
-                window.location.href = httpsUrl;
-                return; // Stop execution
-            }
-            
-            console.log('No redirect needed');
-        })();
-    </script>
 </head>
 
 <body class="creative-agency" style="background-color: black !important;">
