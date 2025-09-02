@@ -2,6 +2,12 @@
 <html lang="zxx">
 
     <head>
+        <!-- Immediate redirect for www subdomain -->
+        <script>
+            if (window.location.hostname === 'www.symplistic.ai') {
+                window.location.replace('https://symplistic.ai' + window.location.pathname + window.location.search + window.location.hash);
+            }
+        </script>
 
         <!-- Metas -->
         <meta charset="utf-8">
@@ -13,7 +19,6 @@
         <meta name="description" content="symplistic.ai is an AI company based in Bonita Springs, Florida, specializing in Agentic AI, Professional Services, and hosts an AI Innovation Hub for businesses.">
     
         <meta name="author" content="symplistic.ai">
-        
 
     
         <!-- Open Graph for Social / iMessage -->
@@ -52,27 +57,39 @@
         gtag('config', 'G-5J9FHSZSSJ');
         </script>
     
-    <!-- Redirect www to apex domain with HTTPS -->
+    <!-- Bulletproof redirect for www to apex domain -->
     <script>
         (function() {
-            // Check if we're on www subdomain (regardless of protocol)
+            console.log('Redirect script running...');
+            console.log('Current hostname:', location.hostname);
+            console.log('Current protocol:', location.protocol);
+            console.log('Current URL:', location.href);
+            
+            // Force redirect for www subdomain - ALWAYS redirect
             if (location.hostname === 'www.symplistic.ai') {
-                // Create new URL with apex domain, preserving the current protocol
-                const newUrl = location.href.replace('www.symplistic.ai', 'symplistic.ai');
+                console.log('Redirecting from www to apex domain...');
                 
-                // Only redirect if the URLs are actually different
-                if (location.href !== newUrl) {
-                    location.replace(newUrl);
-                }
+                // Build the new URL - force HTTPS and apex domain
+                let newUrl = location.href;
+                newUrl = newUrl.replace('www.symplistic.ai', 'symplistic.ai');
+                newUrl = newUrl.replace('http:', 'https:');
+                
+                console.log('Redirecting to:', newUrl);
+                
+                // Force the redirect immediately
+                window.location.href = newUrl;
+                return; // Stop execution
             }
             
-            // Handle HTTP to HTTPS redirect for apex domain only
+            // Handle HTTP to HTTPS redirect for apex domain
             if (location.protocol === 'http:' && location.hostname === 'symplistic.ai') {
+                console.log('Redirecting HTTP to HTTPS...');
                 const httpsUrl = location.href.replace('http:', 'https:');
-                if (location.href !== httpsUrl) {
-                    location.replace(httpsUrl);
-                }
+                window.location.href = httpsUrl;
+                return; // Stop execution
             }
+            
+            console.log('No redirect needed');
         })();
     </script>
 </head>
