@@ -52,6 +52,15 @@
     
     </head>
 
+    <script>
+        if (location.hostname === 'www.symplistic.ai') {
+          const url = new URL(location.href);
+          url.protocol = 'https:';           // enforce HTTPS
+          url.hostname = 'symplistic.ai';    // switch to apex
+          location.replace(url.toString());  //  "no back button" style redirect
+        }
+      </script>
+
 <body class="creative-agency" style="background-color: black !important;">
 
     <div class="contentiq_symplisticai_chat" data-agent="2f45e334-78dd-430f-8a06-dbd14545da0a"></div>
