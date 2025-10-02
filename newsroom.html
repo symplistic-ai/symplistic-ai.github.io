@@ -119,16 +119,62 @@
 
                 <!-- ==================== Start Blog ==================== -->
 
-                <section class="blogs section-padding" style="color: white !important; margin-top: -140px;">
+                <section class="blogs section-padding" style="color: white !important; margin-top: -320px;">
                     <div class="container">
                         <div class="row justify-content-center">
                         <div class="col-lg-10 blog">
                           <div class="row">
-
+                            
+                            <style>
+                                .newsroom-tile {
+                                    padding: 15px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    height: 100%;
+                                }
+                                
+                                .newsroom-tile .item {
+                                    display: flex;
+                                    flex-direction: column;
+                                    height: 100%;
+                                }
+                                
+                                .newsroom-tile .img {
+                                    flex-shrink: 0;
+                                }
+                                
+                                .newsroom-tile .img img {
+                                    width: 100%;
+                                    height: 350px;
+                                    object-fit: cover;
+                                }
+                                
+                                .newsroom-tile .cont {
+                                    flex-grow: 1;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
+                                    min-height: 200px;
+                                }
+                                
+                                .newsroom-tile .view {
+                                    margin-top: auto;
+                                }
+                                
+                                @media (max-width: 768px) {
+                                    .newsroom-tile {
+                                        padding: 10px;
+                                    }
+                                    
+                                    .newsroom-tile .img img {
+                                        height: 250px;
+                                    }
+                                }
+                            </style>
 
                             <!-- October 2nd 2025 Announcement -->
 
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 col-12 newsroom-tile">
                               <div class="item mb-30">
                                 <div class="img fit-img">
                                   <a href="newsroom/2025/symplisticai-introduces-contentiq-ai-agent-platform.html"><img src="assets/img/ContentIQ-Agent.jpg" alt="ContentIQ Agent"></a>
@@ -148,18 +194,22 @@
                                     <br>
                                     <a href="newsroom/2025/symplisticai-introduces-contentiq-ai-agent-platform.html">
                                       <span>Read More</span>
+                                     
                                       <svg xmlns="http://www.w3.org/2000/svg" width="37" height="26" viewBox="0 0 37 26" fill="none">
                                         <path d="M1 35L34.2929 1.70711C34.9229 1.07714 36 1.52331 36 2.41421V21.5H29.5" stroke="#fff" stroke-width="2"></path>
                                       </svg>
                                     </a>
                                   </div>
+                                  <br>
                                 </div>
                               </div>
+                              
+                              <hr>
                             </div>
 
                             <!-- May 12th 2025 Blog -->
 
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 col-12 newsroom-tile">
                               <div class="item mb-30">
                                 <div class="img fit-img">
                                   <a href="newsroom/2025/symplisticai-to-Launch-AI-Agent-within-IBM-watsonx-Orchestrate.html"><img src="assets/imgs/symplistic + ibm 3.jpg" alt=""></a>
@@ -186,11 +236,12 @@
                                   </div>
                                 </div>
                               </div>
+                              <hr>
                             </div>
                             
 
                             <!-- Blog Post April 8 2025 -->
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 col-12 newsroom-tile">
                               <div class="item mb-30">
                                 <div class="img fit-img">
                                   <a href="https://newsroom.ibm.com/2025-05-06-ibm-accelerates-enterprise-gen-ai-revolution-with-hybrid-capabilities" target="_blank"><img src="https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/ibs/ul/cpi/61/0d/watsonxassistantforz_skillscatalog_1x1.component.crop-3by2-xl-retina.ts=1746220424436.png/content/adobe-cms/us/en/products/watsonx-orchestrate/agent-catalog/jcr:content/root/leadspace_container/leadspace_expanded" alt=""></a>
@@ -219,11 +270,11 @@
                             </div>
 
                             <!-- Blog Post April 7 2025 -->
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 col-12 newsroom-tile">
                               <div class="item mb-30">
                                 <div class="img fit-img">
                                   <a href="newsroom/2025/symplisticai-announces-launch-of-AI-Agent-Platform-to-Drive-Enterprise-Efficiency.html">
-                                    <img src="assets/imgs/symplistic-launch.jpg" alt="" >
+                                    <img src="assets/imgs/symplistic-launch-2.jpg" alt="" >
                                   </a>
                                 </div>
                                 <div class="cont mt-20">
