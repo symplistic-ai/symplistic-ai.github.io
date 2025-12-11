@@ -459,13 +459,298 @@
                             </section>
 
                             <section id="governance">
-                                <h2>9) Governance, Security & Compliance</h2>
+                                <h2>9) Governance, Security & Compliance - Encryption & Security Analysis</h2>
+
+                                <h3>1. Data Transmission Encryption</h3>
+                                <p>Data transmission occurs between ContentIQ, Vector Database, Object Storage and MongoDB</p>
+
+                                <h4>TLS/SSL Configuration</h4>
                                 <ul>
-                                    <li><strong>RBAC:</strong> Limit who can connect sources, change agents, deploy widgets, or view analytics.</li>
-                                    <li><strong>Encryption:</strong> TLS 1.3 in transit; secure key handling; JWT/OAuth 2.0 with wxO.</li>
-                                    <li><strong>Enterprise Readiness:</strong> SOC 2, GDPR, HIPAA‑ready deployments available.</li>
-                                    <li><strong>Auditability:</strong> Downloadable conversations and ingestion logs for reviews.</li>
-                                    <li><strong>Data Freshness:</strong> Scheduled re‑ingestion and versioning.</li>
+                                    <li>TLS 1.2+ enforcement for HTTPS connections, outbound connections</li>
+                                    <li>Hostname verification enabled</li>
+                                    <li>Certificate validation signed by trusted CA</li>
+                                    <li>SSL bypass environment variables removed</li>
+                                </ul>
+
+                                <h4>Session Cookie Security</h4>
+                                <ul>
+                                    <li>Secure cookie configuration in Flask</li>
+                                    <li>Session cookies set with in multiple routes</li>
+                                </ul>
+
+                                <h4>CORS Configuration</h4>
+                                <ul>
+                                    <li>Production CORS from environment variables</li>
+                                    <li>Restricted headers: Content-Type, Authorization</li>
+                                </ul>
+
+                                <h3>2. Data Storage</h3>
+
+                                <h4>MongoDB Storage</h4>
+                                <ul>
+                                    <li><strong>Encryption at rest:</strong> AES-256-GCM</li>
+                                    <li>For on premise – client responsibility to configure</li>
+                                    <li><strong>Sensitive data encryption:</strong>
+                                        <ul>
+                                            <li>API keys encrypted with Fernet before storage</li>
+                                            <li>Passwords hashed with bcrypt (not reversible)</li>
+                                            <li>Session data stored with TTL (24 hours)</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Encryption in Transit:</strong> TLS 1.3</li>
+                                </ul>
+
+                                <h4>Vector Storage</h4>
+                                <ul>
+                                    <li><strong>Supported Vector Databases:</strong> Supports Zilliz Cloud, Qdrant, Azure</li>
+                                    <li><strong>Credentials storage:</strong> credentials (URI, token) stored in MongoDB encrypted</li>
+                                    <li><strong>Encryption in Transit:</strong> Uses TLS for connections to vector database endpoints</li>
+                                    <li><strong>Encryption at rest:</strong> enabled by default for SaaS - AES-256</li>
+                                    <li>For on premise – client responsibility to configure</li>
+                                </ul>
+
+                                <h4>Object Store</h4>
+                                <ul>
+                                    <li><strong>Supported Object Store:</strong> AWS S3, Azure Blob</li>
+                                    <li><strong>Credentials storage:</strong> credentials stored in MongoDB encrypted</li>
+                                    <li><strong>Encryption in Transit:</strong> Uses TLS for connections to vector database endpoints</li>
+                                    <li><strong>Encryption at rest:</strong> enabled by default for SaaS - AES-256</li>
+                                    <li>For on premise – client responsibility to configure</li>
+                                </ul>
+
+                                <h3>3. How API Keys and Passwords are stored</h3>
+                                <p>All Keys and client secrets are stored and encrypted in MongoDB</p>
+
+                                <h4>API Key and secrets Encryption</h4>
+                                <ul>
+                                    <li>Fernet encryption</li>
+                                    <li>Key derivation via PBKDF2HMAC</li>
+                                    <li>Base64-encoded encrypted values</li>
+                                </ul>
+
+                                <h4>Password Hashing</h4>
+                                <ul>
+                                    <li>Random salt per password</li>
+                                    <li>Used for all service account passwords</li>
+                                </ul>
+
+                                <h4>API Key Hashing</h4>
+                                <ul>
+                                    <li>Random salt per API key</li>
+                                    <li>Used for headless API keys stored in MongoDB</li>
+                                </ul>
+
+                                <h3>4. Authentication & Authorization</h3>
+
+                                <h4>For on-premises:</h4>
+                                <p>We provide initial username and password, and administrator is required to integrated with their user management system (SSO, MFA)</p>
+
+                                <h4>For SaaS:</h4>
+
+                                <h4>JWT/OAuth 2.0 Implementation</h4>
+
+                                <h4>IBM Broker Authentication</h4>
+                                <ul>
+                                    <li>JWT validation with RS256</li>
+                                    <li>JWKS key fetching and validation</li>
+                                    <li>CRN (Cloud Resource Name) validation</li>
+                                </ul>
+
+                                <h4>Azure Entra ID SSO</h4>
+                                <ul>
+                                    <li><strong>OAuth 2.0 flow:</strong>
+                                        <ul>
+                                            <li>Authorization code flow with PKCE</li>
+                                            <li>Code verifier/challenge generation (SHA-256)</li>
+                                            <li>State parameter for CSRF protection</li>
+                                            <li>Token exchange with Azure AD</li>
+                                            <li>User info retrieval from Microsoft Graph API</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Security measures:</strong>
+                                        <ul>
+                                            <li>Client secret encrypted before storage</li>
+                                            <li>Domain allowlist validation (exact match only)</li>
+                                            <li>Authorization code reuse prevention</li>
+                                            <li>OAuth state validation and TTL (600 seconds)</li>
+                                            <li>PKCE code verifier required for token exchange</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4>Service Account Authentication</h4>
+                                <ul>
+                                    <li>Username/password with bcrypt verification</li>
+                                    <li>Session-based authentication with secure cookies</li>
+                                    <li>User ID extraction from service account documents</li>
+                                </ul>
+
+                                <h4>Headless API Authentication</h4>
+                                <ul>
+                                    <li>API key-based authentication</li>
+                                    <li>Bearer token in Authorization header</li>
+                                    <li>API key verification against bcrypt hash</li>
+                                    <li>Tenant isolation enforced</li>
+                                </ul>
+
+                                <h4>Multi-Factor Authentication</h4>
+
+                                <h4>SSO Support</h4>
+                                <ul>
+                                    <li><strong>Azure Entra ID SSO:</strong> Fully implemented
+                                        <ul>
+                                            <li>OAuth 2.0 with PKCE</li>
+                                            <li>Domain-based authentication</li>
+                                            <li>User provisioning via SSO</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>SSO Configuration:</strong>
+                                        <ul>
+                                            <li>Tenant ID, Client ID, Client Secret (encrypted)</li>
+                                            <li>Redirect URI configuration</li>
+                                            <li>Allowed domains list</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4>MFA Status</h4>
+                                <ul>
+                                    <li>SSO provides MFA when enabled in Azure Entra</li>
+                                </ul>
+
+                                <h3>5. Role-Based Access Control (RBAC)</h3>
+
+                                <h4>RBAC Implementation</h4>
+                                <ul>
+                                    <li><strong>Role management:</strong>
+                                        <ul>
+                                            <li>Custom roles per tenant</li>
+                                            <li>Role creation, update, deletion</li>
+                                            <li>Role assignments to service accounts</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Permission checks:</strong>
+                                        <ul>
+                                            <li>Admin role required for RBAC operations</li>
+                                            <li>Role assignment synchronization across MongoDB, Milvus, Object Store</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Security features:</strong>
+                                        <ul>
+                                            <li>Concurrent modification detection (version conflicts)</li>
+                                            <li>Role assignment checks on page load</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4>Access Control Enforcement</h4>
+                                <ul>
+                                    <li>Admin-only endpoints: SSO configuration, RBAC management</li>
+                                    <li>Role-based visibility: Content visibility based on assigned roles</li>
+                                    <li>Service account permissions: Custom role assignments supported</li>
+                                </ul>
+
+                                <h3>6. Credential Management</h3>
+
+                                <h4>ContentIQ API Key Generation</h4>
+                                <ul>
+                                    <li><strong>Cryptographically secure generation:</strong>
+                                        <ul>
+                                            <li>64-character URL-safe tokens</li>
+                                            <li>Includes hash generation for storage</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4>Credential Storage</h4>
+                                <ul>
+                                    <li>Encrypted API keys, hashed passwords, encrypted SSO secrets</li>
+                                    <li><strong>Encryption key management:</strong>
+                                        <ul>
+                                            <li>Development fallback with PBKDF2 key derivation</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4>Credential Revocation</h4>
+                                <ul>
+                                    <li>API key revocation support</li>
+                                    <li>Credential revocation support</li>
+                                    <li>Session invalidation on logout</li>
+                                </ul>
+
+                                <h3>7. Auditability & Logging</h3>
+
+                                <h4>Conversations</h4>
+                                <ul>
+                                    <li>Conversations are stored in MongoDB (Encrypted)</li>
+                                    <li><strong>Ability to export:</strong>
+                                        <ul>
+                                            <li>Thread messages downloadable as CSV</li>
+                                            <li>Timestamped filenames</li>
+                                            <li>JSON export also supported</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4>Ingestion Logging</h4>
+                                <ul>
+                                    <li>Tracked in multiple MongoDB collections (Encrypted), including:
+                                        <ul>
+                                            <li>High-level tracking</li>
+                                            <li>Detailed website crawl data</li>
+                                            <li>Document processing details</li>
+                                            <li>OneDrive download tracking</li>
+                                            <li>SharePoint download tracking</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <h4>Client-Side Logging</h4>
+                                <ul>
+                                    <li>Stored in MongoDB (Encrypted)</li>
+                                    <li>Admin action logging (role updates, content management)</li>
+                                    <li>Security event logging for authentication failures</li>
+                                    <li>Session creation/deletion logging</li>
+                                </ul>
+
+                                <h3>8. Security Best Practices Implemented</h3>
+
+                                <h4>Input Validation</h4>
+                                <ul>
+                                    <li>Secure filename handling</li>
+                                    <li>URL validation for external connections</li>
+                                    <li>Domain validation (exact match only, no subdomain bypass)</li>
+                                </ul>
+
+                                <h4>Session Security</h4>
+                                <ul>
+                                    <li>TTL-based session expiration (24 hours)</li>
+                                    <li>Secure session cookie configuration</li>
+                                    <li>Session data sanitization (removes long-lived credentials)</li>
+                                </ul>
+
+                                <h4>Error Handling</h4>
+                                <ul>
+                                    <li>Secure error messages (no credential leakage)</li>
+                                    <li>Exception handling with proper logging</li>
+                                    <li>Network timeout configuration (10 seconds for external requests)</li>
+                                </ul>
+
+                                <h4>Secret Management</h4>
+                                <ul>
+                                    <li>Environment variable-based configuration</li>
+                                    <li>Encryption key stored separately from encrypted data</li>
+                                </ul>
+
+                                <h3>9. Areas Requiring Infrastructure Configuration for on-premise</h3>
+
+                                <h4>Encryption at Rest and In Transit</h4>
+                                <ul>
+                                    <li>Requires MongoDB configuration by client</li>
+                                    <li>Requires Vector Database configuration by client</li>
+                                    <li>Requires MinIO configuration by client</li>
+                                    <li>TLS connections enforced all in transit communication</li>
                                 </ul>
                             </section>
 
