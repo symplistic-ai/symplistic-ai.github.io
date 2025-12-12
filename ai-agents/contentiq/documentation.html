@@ -486,6 +486,12 @@
 
                                 <h3>2. Data Storage</h3>
 
+                                <h4>For on-premises:</h4>
+                                <p>The client is responsible for installing, configuring, and managing their own instances of MongoDB, Milvus, and the MinIO object store. These services must be provisioned and maintained by the client for use by ContentIQ in the delivery of its functionality. The client is solely responsible for applying and enforcing all required security controls for these data storage systems, including (but not limited to) changing all default passwords, implementing appropriate access controls, ensuring encryption standards are met, and maintaining compliance with relevant security policies and best practices.</p>
+
+                                <h4>For SaaS:</h4>
+                                <p>We provided embedded instances and manage the following environments for the client with the following security configurations. The client also has the option to point to their own instances in which case the client has the full responsibility of applying and enforcing all required security controls</p>
+
                                 <h4>MongoDB Storage</h4>
                                 <ul>
                                     <li><strong>Encryption at rest:</strong> AES-256-GCM</li>
@@ -680,6 +686,7 @@
                                 </ul>
 
                                 <h3>7. Auditability & Logging</h3>
+                                <p>ContentIQ retains application logs for a default period of 365 days, after which the logs are automatically purged and permanently deleted. The client may configure a shorter or longer log retention duration based on their internal policies or compliance requirements.</p>
 
                                 <h4>Conversations</h4>
                                 <ul>
