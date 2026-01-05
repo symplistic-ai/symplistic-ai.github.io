@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    <!-- Metas -->
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="keywords" content="AI consulting, Agentic AI, Professional Services, app development, AI innovation, digital consulting, symplistic.ai, enterprise AI, custom software solutions, RAG, Retrieval Augmented Generation">
+
+    <meta name="description" content="Building a Simple RAG Pipeline Is Very Easy but Building a RAG Pipeline That Can Respond at a 95 Percent Accuracy Rate Is Not, by symplistic.ai's Steven Astorino">
+
+    <meta name="author" content="symplistic.ai">
+
+    <!-- Title  -->
+    <title>symplistic.ai | Building a Simple RAG Pipeline Is Very Easy but Building a RAG Pipeline That Can Respond at a 95 Percent Accuracy Rate Is Not</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon"
+        href="../assets/imgs/blue-favicon-final.png" sizes="32x32">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Plugins -->
+    <link rel="stylesheet" href="../assets/css/plugins.css">
+
+    <!-- Core Style Css -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5J9FHSZSSJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5J9FHSZSSJ');
+    </script>
+
+</head>
+
+<body style="background-color: black !important; color: white !important;">
+
+
+
+    <!-- ==================== Start Loading ==================== -->
+
+    <div class="loader-wrap">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+        </svg>
+
+        <div class="loader-wrap-heading">
+            <div class="load-text">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== End Loading ==================== -->
+
+
+    <div class="cursor"></div>
+
+
+    <!-- ==================== Start progress-scroll-button ==================== -->
+
+    <!-- <div class="progress-wrap cursor-pointer">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div> -->
+
+    <!-- ==================== End progress-scroll-button ==================== -->
+
+
+
+    <div id="smooth-wrapper">
+
+        <div id="smooth-content">
+
+            <!-- ==================== Start Navbar ==================== -->
+
+            <div id="nav-reusable-container"></div>
+
+            <!-- ==================== End Navbar ==================== -->
+
+            <main>
+
+
+
+                <!-- ==================== Start Header ==================== -->
+
+                <header class="page-header section-padding" style="border-bottom: 2px solid white;">
+                    <div class="container">
+                      <div class="row justify-content-center text-center">
+                        <div class="col-lg-10">
+                          <div class="caption" style="margin-top: 50px">
+                            <h3 class="page-title fw-100">
+                                Building a Simple RAG Pipeline Is Very Easy but Building a RAG Pipeline That Can Respond at a 95 Percent Accuracy Rate Is Not
+                            </h3>
+                            <div class="breadcrumb-wrapper mt-4 d-flex justify-content-center align-items-center gap-2">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </header>
+
+                <!-- ==================== End Header ==================== -->
+
+                <!-- ==================== Start Blog ==================== -->
+
+                <section class="blogs section-padding">
+                    <div class="container d-flex justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="main-post">
+                                <div class="blog">
+                                    <div class="item mb-30 pb-30 bord-thin-bottom">
+                                        <div class="img fit-img">
+                                            <img src="../assets/imgs/blog-6.jpg" alt="">
+                                        </div>
+                                        <div class="cont mt-20">
+                                            <div class="info d-flex align-items-center p-style mb-20">
+                                                <div class="date">
+                                                    <span class="icon ti-calendar" style="color: white !important;"></span>
+                                                    <span class="opacity-8 ml-10" style="color: white !important;">05 January 2026</span>
+                                                </div>
+                                                <div class="author ml-40" style="color: white !important;">
+                                                    <span>by.</span>
+                                                    <span class="opacity-8 ml-10">Steven Astorino</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <!-- New blog content -->
+                                <div class="mt-30">
+                                    <p style="color: darkgrey;">
+                                        Retrieval Augmented Generation has become the default architecture for organizations looking to unlock value from their internal knowledge. The promise is compelling. Connect your documents to a large language model, ask natural language questions, and receive clear, contextual answers in real time.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        In practice, building a basic RAG pipeline is straightforward. With a vector database, an embedding model, and access to an LLM API, most teams can create a working demo in days.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        The challenge emerges when expectations shift from experimentation to production.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        A RAG demo is easy to build. A RAG system that consistently delivers accurate, reliable, and auditable answers at a 95% accuracy rate is far more difficult.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        The gap between these two outcomes is where most RAG initiatives struggle.
+                                    </p>
+                                </div>
+                
+                                <div class="mt-30">
+                                    <h4 class="mb-15 fw-100">Documents Are Messy Even When They Appear Clean</h4>
+                                    <p style="color: darkgrey;">
+                                        The most significant limitation to RAG accuracy is document quality. Enterprise knowledge was rarely created with machine readability in mind, and even well maintained repositories often hide structural issues.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        PDF files frequently contain tables that break during extraction, flattening structured information into unusable text. Scanned documents introduce OCR errors that subtly alter numbers, clauses, or terminology. Policies are often written in intentionally broad language that requires interpretation and contextual awareness. PowerPoint decks rely heavily on diagrams and visual flow rather than explanatory text. Different teams maintain overlapping or conflicting versions of the same documents. Outdated material often remains accessible long after it is no longer valid.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        A simple RAG pipeline ingests all of this content without discrimination. A high accuracy RAG system cannot afford to.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Production grade RAG requires normalized formatting across document types, preservation of semantic structure such as sections and tables, intelligent chunking that reflects meaning rather than token limits, and the attachment of rich metadata such as ownership, jurisdiction, effective date, and confidence level. It also requires active detection and suppression of redundant or contradictory content.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Without this foundation, even the best retrieval and generation layers will fail.
+                                    </p>
+                                </div>
+                
+                                <div class="mt-30">
+                                    <h4 class="mb-15 fw-100">Retrieval Quality Determines RAG Accuracy</h4>
+                                    <p style="color: darkgrey;">
+                                        Most RAG failures are attributed to the language model, but in reality they originate in retrieval.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        If the system retrieves the wrong context, the model never has a chance to produce a correct answer.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Embedding based similarity search alone often returns content that sounds relevant but is factually incorrect or incomplete. High accuracy systems rely on layered retrieval strategies. These include hybrid search combining vector similarity with keyword matching and metadata filters. Chunk size is adjusted dynamically based on the nature of the query. Re ranking models reorder retrieved results based on domain specific relevance. Query rewriting expands or clarifies user intent. Negative filtering removes near miss results that introduce misleading context.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Retrieval defines the boundaries of truth for the model. Improving retrieval almost always produces larger accuracy gains than changing the LLM itself.
+                                    </p>
+                                </div>
+                
+                                <div class="mt-30">
+                                    <h4 class="mb-15 fw-100">Large Language Models Do Not Understand Your Business by Default</h4>
+                                    <p style="color: darkgrey;">
+                                        General purpose language models are fluent but not domain experts. In industries like banking, insurance, or financial services, accuracy depends on understanding internal terminology, procedural nuance, regulatory constraints, and risk boundaries.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Without domain alignment, models tend to over generalize, misinterpret acronyms, confuse similar concepts, and generate confident but operationally incorrect responses.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        High accuracy RAG systems mitigate this through domain tuned models or adapters, carefully engineered system prompts, explicit instruction constraints that limit answers to provided sources, structured output formats that reduce ambiguity, and explicit uncertainty handling that allows the system to decline answering when information is insufficient.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Precision and restraint matter more than eloquence in enterprise environments.
+                                    </p>
+                                </div>
+                
+                                <div class="mt-30">
+                                    <h4 class="mb-15 fw-100">Evaluation Is the Hardest Problem in RAG</h4>
+                                    <p style="color: darkgrey;">
+                                        Most teams cannot clearly answer how accurate their RAG system is.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        That is because evaluation in RAG is inherently complex. Answers may be partially correct, contextually inappropriate, or unsafe even when they appear reasonable.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        High accuracy systems rely on large sets of real user questions rather than synthetic prompts. Ground truth answers are validated by subject matter experts. Responses are graded across multiple dimensions rather than scored as simply correct or incorrect. Automated regression tests detect accuracy degradation after document, embedding, or prompt changes. Continuous monitoring identifies drift as content, language, and user behavior evolve.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Accuracy is not something that is achieved once. It must be maintained continuously.
+                                    </p>
+                                </div>
+                
+                                <div class="mt-30">
+                                    <h4 class="mb-15 fw-100">Accuracy Comes at a Latency Cost</h4>
+                                    <p style="color: darkgrey;">
+                                        Improving accuracy typically increases system complexity. Additional retrieval layers, re ranking models, guardrail checks, larger context windows, and citation validation all introduce latency and cost.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        High performing systems manage this tradeoff deliberately. Queries are routed based on complexity. Simple questions follow fast paths while complex queries trigger deeper reasoning. High confidence answers are cached. Lightweight models handle validation and compliance checks. Embeddings and retrieval paths are pre computed where possible.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        The goal is not maximum accuracy at all times. The goal is reliable accuracy delivered at enterprise acceptable speed.
+                                    </p>
+                                </div>
+                
+                                <div class="mt-30">
+                                    <h4 class="mb-15 fw-100">Governance and Compliance Are Non Negotiable</h4>
+                                    <p style="color: darkgrey;">
+                                        In enterprise and regulated environments, accuracy alone is insufficient. Answers must also be explainable, auditable, and secure.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Production RAG systems require sentence or clause level citations, role based access control, automatic detection and masking of sensitive information, full audit trails for every interaction, and policy enforcement layers that prevent the system from generating non compliant responses.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Without governance, RAG systems rarely progress beyond pilot stages regardless of technical performance.
+                                    </p>
+                                </div>
+                
+                                <div class="mt-30">
+                                    <h4 class="mb-15 fw-100">Conclusion</h4>
+                                    <p style="color: darkgrey;">
+                                        Building a simple RAG pipeline is easy. Building a RAG system that enterprises trust is hard.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        Achieving a 95% accuracy rate is not the result of a single model or tool. It emerges from disciplined engineering across data preparation, retrieval strategy, domain alignment, evaluation frameworks, performance optimization, and governance controls.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        This distinction separates prototypes from platforms.
+                                    </p><br>
+                                    <p style="color: darkgrey;">
+                                        At symplistic.ai, our focus is on helping organizations move beyond RAG demos to production ready systems that deliver accurate, auditable, and reliable insights in real operational environments.
+                                    </p>
+                                </div>
+                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+
+                <!-- ==================== End Blog ==================== -->
+
+
+
+            </main>
+
+
+            <!-- ==================== Start Footer ==================== -->
+
+            <div id="footer-reusable-container"></div>
+
+            <!-- ==================== End Footer ==================== -->
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/jquery-migrate-3.4.0.min.js"></script>
+
+    <!-- plugins -->
+    <script src="../assets/js/plugins.js"></script>
+
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/ScrollSmoother.min.js"></script>
+    <script src="../assets/js/ScrollTrigger.min.js"></script>
+    <script src="../assets/js/SplitText.min.js"></script>
+
+    <!-- custom scripts -->
+    <script src="../assets/js/scripts.js"></script>
+
+    <!-- reusable -->
+    <script src="../assets/js/reusable.js"></script>
+
+    <!-- for nav -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+</body>
+
+</html>
+
