@@ -125,68 +125,110 @@
       var status = (params.get("status") || "").toLowerCase();
       var email = params.get("email");
       var token = params.get("token");
-      /* One-click from broadcast email: symplistic.ai link → Resource Manager API → back here with ?status= */
+
+      function paintStatus(s) {
+        var icon = document.getElementById("icon");
+        var title = document.getElementById("title");
+        var lede = document.getElementById("lede");
+        var detail = document.getElementById("detail");
+
+        if (s === "loading") {
+          icon.textContent = "…";
+          icon.className = "icon warn";
+          title.textContent = "Unsubscribe";
+          lede.textContent = "Confirming your choice…";
+          detail.hidden = true;
+          document.title = "Unsubscribe — symplistic.ai";
+          return;
+        }
+
+        if (s === "ok") {
+          icon.textContent = "✓";
+          icon.className = "icon ok";
+          title.textContent = "You’re unsubscribed";
+          lede.textContent =
+            "You won’t receive ContentIQ release broadcast emails at this address anymore.";
+          detail.hidden = true;
+          document.title = "Unsubscribed — symplistic.ai";
+          return;
+        }
+
+        if (s === "invalid") {
+          icon.textContent = "!";
+          icon.className = "icon warn";
+          title.textContent = "Link couldn’t be verified";
+          lede.textContent =
+            "This unsubscribe link is invalid or has expired. If you still want to opt out, contact us and we’ll help.";
+          detail.hidden = false;
+          detail.textContent =
+            "Tip: open the link from the most recent email, or ask your admin to remove your address from the broadcast list.";
+          document.title = "Unsubscribe link invalid — symplistic.ai";
+          return;
+        }
+
+        if (s === "error") {
+          icon.textContent = "×";
+          icon.className = "icon bad";
+          title.textContent = "Something went wrong";
+          lede.textContent =
+            "We couldn’t complete your unsubscribe request. Please try again in a moment or email us.";
+          detail.hidden = false;
+          detail.textContent =
+            "If the problem continues, contact info@symplistic.ai with the email address you want removed.";
+          document.title = "Unsubscribe error — symplistic.ai";
+          return;
+        }
+
+        icon.textContent = "?";
+        icon.className = "icon warn";
+        title.textContent = "Unsubscribe";
+        lede.textContent =
+          "If you followed a link from an email, your preference should be recorded. For other requests, use the contact below.";
+        detail.hidden = true;
+        document.title = "Unsubscribe — symplistic.ai";
+      }
+
+      function stripToStatusOnly(next) {
+        if (!window.history || !window.history.replaceState) return;
+        var u = new URL(window.location.href);
+        u.search = "";
+        u.searchParams.set("status", next);
+        window.history.replaceState({}, "", u.pathname + u.search + (u.hash || ""));
+      }
+
+      /* From email: stay on symplistic.ai; API is called in the background only. */
       if (email && token && status !== "ok" && status !== "invalid" && status !== "error") {
+        paintStatus("loading");
         var rawBase =
           document.documentElement.getAttribute("data-unsubscribe-api-base") ||
           "https://dashboard.symplistic.ai";
         var apiBase = String(rawBase).trim().replace(/\/$/, "");
-        var next =
-          apiBase +
-          "/api/email-center/unsubscribe?" +
-          new URLSearchParams({ email: email, token: token }).toString();
-        window.location.replace(next);
-        return;
-      }
-      var icon = document.getElementById("icon");
-      var title = document.getElementById("title");
-      var lede = document.getElementById("lede");
-      var detail = document.getElementById("detail");
-
-      if (status === "ok") {
-        icon.textContent = "✓";
-        icon.className = "icon ok";
-        title.textContent = "You’re unsubscribed";
-        lede.textContent =
-          "You won’t receive ContentIQ release broadcast emails at this address anymore.";
-        detail.hidden = true;
-        document.title = "Unsubscribed — symplistic.ai";
-        return;
-      }
-
-      if (status === "invalid") {
-        icon.textContent = "!";
-        icon.className = "icon warn";
-        title.textContent = "Link couldn’t be verified";
-        lede.textContent =
-          "This unsubscribe link is invalid or has expired. If you still want to opt out, contact us and we’ll help.";
-        detail.hidden = false;
-        detail.textContent =
-          "Tip: open the link from the most recent email, or ask your admin to remove your address from the broadcast list.";
-        document.title = "Unsubscribe link invalid — symplistic.ai";
+        var qs = new URLSearchParams({ email: email, token: token, respond: "json" }).toString();
+        fetch(apiBase + "/api/email-center/unsubscribe?" + qs, {
+          method: "GET",
+          credentials: "omit",
+          mode: "cors",
+        })
+          .then(function (r) {
+            return r.json().catch(function () {
+              return {};
+            });
+          })
+          .then(function (data) {
+            var out =
+              data && data.status ? String(data.status).toLowerCase() : "error";
+            if (out !== "ok" && out !== "invalid" && out !== "error") out = "error";
+            paintStatus(out);
+            stripToStatusOnly(out);
+          })
+          .catch(function () {
+            paintStatus("error");
+            stripToStatusOnly("error");
+          });
         return;
       }
 
-      if (status === "error") {
-        icon.textContent = "×";
-        icon.className = "icon bad";
-        title.textContent = "Something went wrong";
-        lede.textContent =
-          "We couldn’t complete your unsubscribe request. Please try again in a moment or email us.";
-        detail.hidden = false;
-        detail.textContent =
-          "If the problem continues, contact info@symplistic.ai with the email address you want removed.";
-        document.title = "Unsubscribe error — symplistic.ai";
-        return;
-      }
-
-      icon.textContent = "?";
-      icon.className = "icon warn";
-      title.textContent = "Unsubscribe";
-      lede.textContent =
-        "If you followed a link from an email, your preference should be recorded. For other requests, use the contact below.";
-      detail.hidden = true;
-      document.title = "Unsubscribe — symplistic.ai";
+      paintStatus(status);
     })();
   </script>
 </body>
