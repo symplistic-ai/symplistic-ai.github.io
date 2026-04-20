@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-unsubscribe-api-base="https://dashboard.symplistic.ai">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -123,6 +123,21 @@
     (function () {
       var params = new URLSearchParams(window.location.search);
       var status = (params.get("status") || "").toLowerCase();
+      var email = params.get("email");
+      var token = params.get("token");
+      /* One-click from broadcast email: symplistic.ai link → Resource Manager API → back here with ?status= */
+      if (email && token && status !== "ok" && status !== "invalid" && status !== "error") {
+        var rawBase =
+          document.documentElement.getAttribute("data-unsubscribe-api-base") ||
+          "https://dashboard.symplistic.ai";
+        var apiBase = String(rawBase).trim().replace(/\/$/, "");
+        var next =
+          apiBase +
+          "/api/email-center/unsubscribe?" +
+          new URLSearchParams({ email: email, token: token }).toString();
+        window.location.replace(next);
+        return;
+      }
       var icon = document.getElementById("icon");
       var title = document.getElementById("title");
       var lede = document.getElementById("lede");
