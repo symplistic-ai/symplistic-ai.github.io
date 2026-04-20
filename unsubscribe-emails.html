@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsubscribe — symplistic.ai</title>
+  <style>
+    :root {
+      --bg: #1f1f1f;
+      --surface: #2b2b2b;
+      --text: #e8e8e8;
+      --muted: #9c9c9c;
+      --accent: #6b9eff;
+      --border: #3d3d3d;
+      --success: #4ade80;
+      --warn: #fbbf24;
+      --err: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      max-width: 440px;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem 1.75rem;
+      text-align: center;
+    }
+    .icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+    .icon.ok { background: rgba(74, 222, 128, 0.15); color: var(--success); }
+    .icon.bad { background: rgba(248, 113, 113, 0.12); color: var(--err); }
+    .icon.warn { background: rgba(251, 191, 36, 0.12); color: var(--warn); }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    p {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+    p:last-of-type { margin-bottom: 0; }
+    .actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    a.btn {
+      display: inline-block;
+      padding: 0.55rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: #363636;
+    }
+    a.btn:hover { background: #404040; }
+    a.btn-primary {
+      background: var(--accent);
+      border-color: #5a8fd9;
+      color: #0f172a;
+    }
+    a.btn-primary:hover { filter: brightness(1.05); }
+    footer {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    a.inline {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div id="icon" class="icon ok" aria-hidden="true">✓</div>
+    <h1 id="title">You’re unsubscribed</h1>
+    <p id="lede">
+      You won’t receive ContentIQ release broadcast emails at this address anymore.
+    </p>
+    <p id="detail" hidden></p>
+    <div class="actions">
+      <a class="btn btn-primary" href="https://symplistic.ai/">symplistic.ai</a>
+      <a class="btn" href="https://symplistic.ai/privacy-policy.html">Privacy policy</a>
+    </div>
+    <footer>
+      Questions? <a class="inline" href="mailto:info@symplistic.ai">info@symplistic.ai</a>
+    </footer>
+  </main>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var status = (params.get("status") || "").toLowerCase();
+      var icon = document.getElementById("icon");
+      var title = document.getElementById("title");
+      var lede = document.getElementById("lede");
+      var detail = document.getElementById("detail");
+
+      if (status === "ok") {
+        icon.textContent = "✓";
+        icon.className = "icon ok";
+        title.textContent = "You’re unsubscribed";
+        lede.textContent =
+          "You won’t receive ContentIQ release broadcast emails at this address anymore.";
+        detail.hidden = true;
+        document.title = "Unsubscribed — symplistic.ai";
+        return;
+      }
+
+      if (status === "invalid") {
+        icon.textContent = "!";
+        icon.className = "icon warn";
+        title.textContent = "Link couldn’t be verified";
+        lede.textContent =
+          "This unsubscribe link is invalid or has expired. If you still want to opt out, contact us and we’ll help.";
+        detail.hidden = false;
+        detail.textContent =
+          "Tip: open the link from the most recent email, or ask your admin to remove your address from the broadcast list.";
+        document.title = "Unsubscribe link invalid — symplistic.ai";
+        return;
+      }
+
+      if (status === "error") {
+        icon.textContent = "×";
+        icon.className = "icon bad";
+        title.textContent = "Something went wrong";
+        lede.textContent =
+          "We couldn’t complete your unsubscribe request. Please try again in a moment or email us.";
+        detail.hidden = false;
+        detail.textContent =
+          "If the problem continues, contact info@symplistic.ai with the email address you want removed.";
+        document.title = "Unsubscribe error — symplistic.ai";
+        return;
+      }
+
+      icon.textContent = "?";
+      icon.className = "icon warn";
+      title.textContent = "Unsubscribe";
+      lede.textContent =
+        "If you followed a link from an email, your preference should be recorded. For other requests, use the contact below.";
+      detail.hidden = true;
+      document.title = "Unsubscribe — symplistic.ai";
+    })();
+  </script>
+</body>
+</html>
