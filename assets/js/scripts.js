@@ -782,3 +782,27 @@ $(function () {
         });
     }
 });
+
+// ContentIQ chat widget: load sibling `contentiq-site-widget.js` (same folder as this file; works on any path depth).
+(function () {
+    if (document.querySelector('script[src*="contentiq-site-widget.js"]')) return;
+    if (document.querySelector('script[src*="contentiq-widget.pages.dev"]')) return;
+
+    var resolved = '';
+    var nodes = document.getElementsByTagName('script');
+    for (var i = nodes.length - 1; i >= 0; i--) {
+        var src = nodes[i].src || '';
+        if (/scripts\.js(\?|#|$)/i.test(src)) {
+            resolved = src.replace(/scripts\.js(\?[^#]*)?(#.*)?$/i, 'contentiq-site-widget.js$1$2');
+            break;
+        }
+    }
+    if (!resolved) {
+        resolved = '/assets/js/contentiq-site-widget.js';
+    }
+
+    var loader = document.createElement('script');
+    loader.src = resolved;
+    loader.async = true;
+    document.body.appendChild(loader);
+})();
