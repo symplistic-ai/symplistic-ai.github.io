@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="keywords" content="ContentIQ, AI agent, conversational AI, knowledge base, document intelligence, RAG, enterprise content, symplistic.ai">
+    <meta name="keywords" content="TestIQ, AI agent testing, LLM evaluation, test suites, WatsonX, ContentIQ, regression testing, hallucination testing, symplistic.ai">
 
-    <meta name="description" content="ContentIQ transforms websites, documents, and knowledge bases into smart, interactive conversational agents. Reduce search time and increase productivity with AI-powered content intelligence.">
+    <meta name="description" content="TestIQ is a workspace for evaluating AI and LLM-backed agents: connect integrations, register agents, build suites, run evaluations, inspect results, compare runs, and tune prompts, with analytics, schedules, and APIs.">
 
     <meta name="author" content="symplistic.ai">
 
     <!-- Title  -->
-    <title>ContentIQ | Transform Content into Conversations | symplistic.ai</title>
+    <title>TestIQ | Evaluate and Improve AI Agents | symplistic.ai</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../../assets/imgs/blue-favicon-final.png" sizes="32x32">
@@ -39,7 +39,7 @@
     <style>
         body { background-color: black !important; }
 
-        /* Use Manrope + Hanken Grotesk from Google Fonts (theme defaults to Inter). */
+        /* Use Manrope + Hanken Grotesk (same as ContentIQ product page; theme defaults to Inter). */
         body.creative-agency main {
             font-family: 'Manrope', sans-serif !important;
         }
@@ -52,13 +52,14 @@
         body.creative-agency main .section-subtitle,
         body.creative-agency main .cta-title,
         body.creative-agency main .capability-title,
-        body.creative-agency main .use-case-title,
+        body.creative-agency main .benefits-heading,
+        body.creative-agency main .core-cap-block-title,
         body.creative-agency main .stat-number,
         body.creative-agency main .metric-value {
             font-family: 'Hanken Grotesk', sans-serif !important;
         }
         
-        .contentiq-hero {
+        .testiq-hero {
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             min-height: 100vh;
             display: flex;
@@ -328,11 +329,85 @@
             line-height: 1.5;
         }
 
+        .section-problem .stat-card {
+            text-align: left;
+        }
+
+        .problem-lead {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.35;
+        }
+
+        .core-cap-lead {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.65;
+            text-align: center;
+            max-width: 920px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .core-cap-block {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 28px 32px;
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        .core-cap-block:last-of-type {
+            margin-bottom: 0;
+        }
+
+        main .core-cap-block-title {
+            font-size: 1.35rem !important;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 0 14px 0;
+            line-height: 1.3;
+            letter-spacing: normal !important;
+        }
+
+        .core-cap-block ul {
+            color: #ccc;
+            margin: 0;
+            padding-left: 1.2rem;
+            line-height: 1.55;
+            font-size: 0.98rem;
+        }
+
+        .core-cap-block li {
+            margin-bottom: 10px;
+        }
+
+        .core-cap-block li:last-child {
+            margin-bottom: 0;
+        }
+
+        .core-cap-block strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .benefits-heading {
+            color: #fff;
+            font-size: 1.75rem !important;
+            font-weight: 600;
+            text-align: center;
+            margin: 2.5rem 0 1.25rem;
+            letter-spacing: normal !important;
+        }
+
         .capabilities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             margin: 4rem 0;
+            align-items: stretch;
         }
 
         .capability-card {
@@ -343,6 +418,10 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 12rem;
         }
 
         .capability-card::before {
@@ -387,58 +466,64 @@
             margin-bottom: 15px;
         }
 
+        .capability-card-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: start;
+            column-gap: 0.75rem;
+            row-gap: 0;
+            margin-bottom: 15px;
+        }
+
+        .capability-card-header .capability-title {
+            margin-bottom: 0;
+            line-height: 1.25;
+            min-width: 0;
+        }
+
+        .capability-card-header .capability-badge {
+            margin-top: 0.2em;
+        }
+
+        .capability-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #e9d5ff;
+            background: rgba(124, 58, 237, 0.25);
+            border: 1px solid rgba(167, 139, 250, 0.5);
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
         .capability-description {
             color: #ccc;
             line-height: 1.6;
             font-size: 1rem;
-        }
-
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 4rem 0;
-        }
-
-        .use-case-card {
-            background: #111;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
-        }
-
-        .use-case-card:hover {
-            transform: translateY(-3px);
-            border-color: #555;
-            box-shadow: 0 8px 25px rgba(85, 85, 85, 0.1);
-        }
-
-        .use-case-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .use-case-example {
-            color: #ccc;
-            font-style: italic;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-
-        .use-case-description {
-            color: #ccc;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            flex: 1;
+            margin: 0;
         }
 
         .value-metrics {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr;
             gap: 30px;
             margin: 4rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .value-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1000px) {
+            .value-metrics {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .metric-card {
@@ -564,6 +649,7 @@
             .hero-description { font-size: 1.1rem; }
             .section-title { font-size: 2.5rem; }
             .capabilities-grid { grid-template-columns: 1fr; }
+            .capability-card { min-height: 0; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .hero-btn { width: 100%; max-width: 300px; }
         }
@@ -601,291 +687,152 @@
         <div id="smooth-content">
             <main>
                 <!-- ==================== Start Hero Section ==================== -->
-                <section class="contentiq-hero">
+                <section class="testiq-hero">
                     <div class="hero-content">
-                        <h1 class="hero-title">symplistic.ContentIQ</h1>
+                        <h1 class="hero-title">symplistic.TestIQ</h1>
                         <p class="hero-description">
-                            An AI agent that transforms documents, cloud content platforms (SharePoint, Box, OneDrive), behind-the-firewall knowledge, and websites into trusted, conversational AI agents in minutes. Transforms static documents into intelligent, contextual conversations.
+                            The AI testing agent that automatically generates realistic scenarios and executes end-to-end assessments across reasoning, safety, and performance.
                         </p>
                         <div class="hero-buttons">
                             <button type="button" class="hero-btn hero-btn-trial" id="trial-modal-open">Free trial</button>
-                            <a href="#capabilities" class="hero-btn">Explore Capabilities</a>
-                            <a href="../../ai-agents/contentiq/documentation.html" class="hero-btn">View Documentation</a>
+                            <a href="#capabilities" class="hero-btn">Explore capabilities</a>
+                            <a href="https://testiq.symplistic.ai/documentation" class="hero-btn" target="_blank" rel="noopener noreferrer">View documentation</a>
                         </div>
                     </div>
                 </section>
                 <!-- ==================== End Hero Section ==================== -->
 
                 <!-- ==================== Start Problem Section ==================== -->
-                <section class="section section-dark">
+                <section class="section section-dark section-problem">
                     <div class="container-custom">
-                        <h2 class="section-title">The Problem</h2>
-                        <h3 class="section-subtitle">Enterprise Content is Growing. But It's Not Working.</h3>
+                        <h2 class="section-title">Why TestIQ?</h2>
+                        <h3 class="section-subtitle">AI Evaluation is Broken</h3>
                         
                         <div class="problem-stats">
                             <div class="stat-card">
-                                <div class="stat-number">65%</div>
-                                <div class="stat-text">of workers report wasting time searching for information each day</div>
+                                <div class="problem-lead">The Bottleneck</div>
+                                <div class="stat-text">63% of enterprises report that validating AI performance is their biggest production hurdle.</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-number">15-25%</div>
-                                <div class="stat-text">of support agent time wasted searching internal documents while on calls</div>
+                                <div class="problem-lead">The Risk</div>
+                                <div class="stat-text">70% of AI models fail to meet reliability or safety expectations once deployed.</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-number">20%</div>
-                                <div class="stat-text">of knowledge workers can find content they need in under 2 minutes</div>
+                                <div class="problem-lead">The Gap</div>
+                                <div class="stat-text">Over 60% of teams rely on manual testing that doesn&apos;t reflect real user behavior.</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-number">80%</div>
-                                <div class="stat-text">of company knowledge resides in documents that aren't conveniently accessible</div>
+                                <div class="problem-lead">The Solution</div>
+                                <div class="stat-text">TestIQ reduces friction across AI, DevOps, and Compliance teams by streamlining validation and preventing regressions.</div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- ==================== End Problem Section ==================== -->
 
-                <!-- ==================== Start What is ContentIQ Section ==================== -->
+                <!-- ==================== Start What is TestIQ Section ==================== -->
                 <section class="section section-black">
                     <div class="container-custom">
-                        <h2 class="section-title">What is symplistic.ContentIQ</h2>
-                        <h3 class="section-subtitle">Your Entire Content Universe. Made Conversational</h3>
+                        <h2 class="section-title">What is TestIQ?</h2>
                         
-                        <p style="color: #ccc; font-size: 1.2rem; text-align: center; margin-bottom: 3rem; line-height: 1.6;">
-                            ContentIQ ingests any content source (documents, cloud content platforms such as SharePoint, Box, OneDrive, behind-the-firewall knowledge, and websites) and transforms them into intelligent conversational agents.
+                        <p class="core-cap-lead">
+                            Symplistic TestIQ is an AI testing platform designed to help organizations deploy trustworthy AI agents. It functions as an automated testing agent that creates realistic scenarios and executes full evaluation suites that mirror real-world workflows.
                         </p>
+
+                        <h3 class="benefits-heading">Key Benefits</h3>
 
                         <div class="capabilities-grid">
                             <div class="capability-card">
-                                <div class="capability-icon">🕷️</div>
-                                <h3 class="capability-title">Crawls and Cleans Content</h3>
-                                <p class="capability-description">Via scraper/API/upload to ensure comprehensive content ingestion from all sources.</p>
-                            </div>
-
-                            <div class="capability-card">
-                                <div class="capability-icon">🧠</div>
-                                <h3 class="capability-title">Chunks and Vectorizes</h3>
-                                <p class="capability-description">For retrieval using LLM-based embeddings, making content semantically searchable.</p>
-                            </div>
-
-                            <div class="capability-card">
-                                <div class="capability-icon">💬</div>
-                                <h3 class="capability-title">RAG-Powered Answers</h3>
-                                <p class="capability-description">Uses Retrieval Augmented Generation to generate answers with citations and source attribution.</p>
-                            </div>
-
-                            <div class="capability-card">
-                                <div class="capability-icon">🎨</div>
-                                <h3 class="capability-title">Flexible UI Options</h3>
-                                <p class="capability-description">Text & voice chat UI, or embeds as a white-labeled widget in your existing systems.</p>
+                                <div class="capability-icon">✅</div>
+                                <h3 class="capability-title">Automated Reliability</h3>
+                                <p class="capability-description">Automatically generates realistic test scenarios to increase agent trustworthiness.</p>
                             </div>
 
                             <div class="capability-card">
                                 <div class="capability-icon">🔄</div>
-                                <h3 class="capability-title">Auto-Sync & Improve</h3>
-                                <p class="capability-description">Syncs automatically with content updates, identifies gaps, and improves over time.</p>
+                                <h3 class="capability-title">Continuous Evaluation</h3>
+                                <p class="capability-description">Runs real-world conversations, tool calls, and permission checks to validate performance.</p>
                             </div>
 
                             <div class="capability-card">
-                                <div class="capability-icon">📊</div>
-                                <h3 class="capability-title">Content Insights</h3>
-                                <p class="capability-description">Provides valuable insights about your content performance and usage patterns.</p>
+                                <div class="capability-icon">⚡</div>
+                                <h3 class="capability-title">Efficiency at Scale</h3>
+                                <p class="capability-description">Reduces manual QA costs and streamlines the validation process for AI initiatives.</p>
                             </div>
-                        </div>
 
-                        <div style="text-align: center; margin-top: 3rem;">
-                            <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">Replace static pages with smart conversations. Everywhere.</h3>
+                            <div class="capability-card">
+                                <div class="capability-icon">🛡️</div>
+                                <h3 class="capability-title">Regression Prevention</h3>
+                                <p class="capability-description">Catches failures and reasoning errors before they reach production.</p>
+                            </div>
+
+                            <div class="capability-card">
+                                <div class="capability-icon">🔍</div>
+                                <h3 class="capability-title">Actionable Insights</h3>
+                                <p class="capability-description">Provides replayable traces and explainability for every automated run.</p>
+                            </div>
                         </div>
                     </div>
                 </section>
-                <!-- ==================== End What is ContentIQ Section ==================== -->
+                <!-- ==================== End What is TestIQ Section ==================== -->
 
                 <!-- ==================== Start Core Capabilities Section ==================== -->
                 <section class="section section-dark" id="capabilities">
                     <div class="container-custom">
                         <h2 class="section-title">Core Capabilities</h2>
-                        <h3 class="section-subtitle">Foundational Capabilities to Build User Trust</h3>
-                        
-                        <div class="capabilities-grid">
-                            <div class="capability-card">
-                                <div class="capability-icon">⚡</div>
-                                <h3 class="capability-title">Instant Agent Creation</h3>
-                                <p class="capability-description">Connect URLs, documents, and data repositories to turn them into a smart conversational agent instantly.</p>
-                            </div>
+                        <p class="core-cap-lead">The TestIQ platform provides a unified workspace for managing the entire AI agent testing lifecycle, from initial test generation to long-term performance tracking.</p>
 
-                            <div class="capability-card">
-                                <div class="capability-icon">🧩</div>
-                                <h3 class="capability-title">Smart Chunking + Vectorization</h3>
-                                <p class="capability-description">Semantically grouped, retrieval-ready content processing for optimal search and response generation.</p>
-                            </div>
+                        <div class="core-cap-block">
+                            <h3 class="core-cap-block-title">1. Comprehensive Test Management</h3>
+                            <ul>
+                                <li><strong>Agent-Centric Dashboards:</strong> Searchable dashboards that track favorites and deeper agent metrics over time.</li>
+                                <li><strong>Automated Scenario Generation:</strong> One-click evaluation that builds full end-to-end assessments across reasoning, safety, and performance dimensions.</li>
+                                <li><strong>Diverse Coverage:</strong> Supports standard, contextual, hallucination, penetration, load, and concurrency test cases.</li>
+                                <li><strong>Custom Imports:</strong> Capability to manually create cases, import existing ones, or use auto-generated history.</li>
+                            </ul>
+                        </div>
 
-                            <div class="capability-card">
-                                <div class="capability-icon">❓</div>
-                                <h3 class="capability-title">Real-Time FAQ Generation</h3>
-                                <p class="capability-description">Learn from user queries to automatically improve documentation and create comprehensive FAQs.</p>
-                            </div>
+                        <div class="core-cap-block">
+                            <h3 class="core-cap-block-title">2. Execution &amp; Live Monitoring</h3>
+                            <ul>
+                                <li><strong>Real-Time Control:</strong> Monitor live runs with the ability to pause, resume, or stop execution at any time.</li>
+                                <li><strong>Regression Analytics:</strong> View performance trends and identify regressions across different agent versions.</li>
+                                <li><strong>Explainability Traces:</strong> Deep visibility into run behavior with replayable traces to diagnose tool-use or API errors.</li>
+                            </ul>
+                        </div>
 
-                            <div class="capability-card">
-                                <div class="capability-icon">🔍</div>
-                                <h3 class="capability-title">Content Gap Finder</h3>
-                                <p class="capability-description">Detects stale or missing data to help maintain comprehensive and up-to-date knowledge bases.</p>
-                            </div>
+                        <div class="core-cap-block">
+                            <h3 class="core-cap-block-title">3. Optimization &amp; Governance</h3>
+                            <ul>
+                                <li><strong>AI-Assisted Prompting:</strong> Tools for continuous prompt improvement and enhancement.</li>
+                                <li><strong>Automated Quality Gates:</strong> Integrate quality thresholds into CI/CD pipelines to block risky or low-accuracy deployments.</li>
+                                <li><strong>Recurring Schedules:</strong> Set automated schedules for continuous evaluation.</li>
+                            </ul>
+                        </div>
 
-                            <div class="capability-card">
-                                <div class="capability-icon">📚</div>
-                                <h3 class="capability-title">Citation-Based Answers</h3>
-                                <p class="capability-description">Every response is traceable to a source, ensuring transparency and building user trust.</p>
-                            </div>
-
-                            <div class="capability-card">
-                                <div class="capability-icon">👤</div>
-                                <h3 class="capability-title">Personalized UX</h3>
-                                <p class="capability-description">Varies by user role, region, and behavior to deliver tailored experiences for each user.</p>
-                            </div>
-
-                            <div class="capability-card">
-                                <div class="capability-icon">📝</div>
-                                <h3 class="capability-title">Content Intelligence</h3>
-                                <p class="capability-description">Summarize, extract key info, create blog/social/presentations from existing content.</p>
-                            </div>
-
-                            <div class="capability-card">
-                                <div class="capability-icon">🔀</div>
-                                <h3 class="capability-title">Smart Redirects</h3>
-                                <p class="capability-description">If answer is missing, intelligently route to live chat or contact page for seamless user experience.</p>
-                            </div>
-
-                            <div class="capability-card">
-                                <div class="capability-icon">🎭</div>
-                                <h3 class="capability-title">Multi-modal Support</h3>
-                                <p class="capability-description">Tables, PDFs, images, OCR, video snippets - handle any content format with ease.</p>
-                            </div>
+                        <div class="core-cap-block">
+                            <h3 class="core-cap-block-title">4. Enterprise-Grade Administration</h3>
+                            <ul>
+                                <li><strong>Secure Access:</strong> Features email/password login, SSO, and invitation-based onboarding.</li>
+                                <li><strong>Tenant Management:</strong> Full administration controls for users, notification history, and API keys.</li>
+                                <li><strong>Detailed Reporting:</strong> Filter and export detailed run results to PDF for internal review and auditing.</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
                 <!-- ==================== End Core Capabilities Section ==================== -->
 
-                <!-- ==================== Start Use Cases Section ==================== -->
-                <section class="section section-black">
-                    <div class="container-custom">
-                        <h2 class="section-title">Example Use Cases</h2>
-                        <h3 class="section-subtitle">Use Cases by Function</h3>
-                        
-                        <div class="use-cases-grid">
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Personalized Financial Intelligence</h4>
-                                <div class="use-case-example">"What's the best credit card available for travel?"</div>
-                                <p class="use-case-description">Retail Banking Agent Assist providing personalized financial guidance and product recommendations.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Legal Compliance</h4>
-                                <div class="use-case-example">"Summarize GDPR clauses impacting customer data use"</div>
-                                <p class="use-case-description">Automated legal document analysis and compliance guidance for regulatory requirements.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">HR Assistant</h4>
-                                <div class="use-case-example">"What's the leave policy for part-time employees in California?"</div>
-                                <p class="use-case-description">Instant access to HR policies and procedures with location-specific information.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Customer Support</h4>
-                                <div class="use-case-example">"Do your plans allow downgrading mid-cycle?"</div>
-                                <p class="use-case-description">Quick resolution of customer inquiries with accurate policy information.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Product/Marketing</h4>
-                                <div class="use-case-example">"Extract quotes from our product documents for social posts"</div>
-                                <p class="use-case-description">Content repurposing and marketing material generation from existing documentation.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Insurance Claims</h4>
-                                <div class="use-case-example">"Which claim types qualify for express processing under Plan C?"</div>
-                                <p class="use-case-description">Streamlined claims processing with instant policy and procedure guidance.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Higher Ed Portal</h4>
-                                <div class="use-case-example">"What are the transfer credit policies for international students?"</div>
-                                <p class="use-case-description">Student services automation with comprehensive academic policy information.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">SaaS Onboarding</h4>
-                                <div class="use-case-example">"Walk me through API key setup for our sandbox environment"</div>
-                                <p class="use-case-description">Guided technical onboarding with step-by-step implementation assistance.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Procurement Officer Assist</h4>
-                                <div class="use-case-example">"Who's our preferred vendor for cloud storage and what's the SLA?"</div>
-                                <p class="use-case-description">Procurement decision support with vendor and contract information.</p>
-                            </div>
-
-                            <div class="use-case-card">
-                                <h4 class="use-case-title">Healthcare Staff Agent</h4>
-                                <div class="use-case-example">"What steps must be followed for pre-op patient clearance under policy 43.2?"</div>
-                                <p class="use-case-description">Medical procedure guidance with specific policy and protocol information.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- ==================== End Use Cases Section ==================== -->
-
-                <!-- ==================== Start Business Value Section ==================== -->
-                <section class="section section-dark">
-                    <div class="container-custom">
-                        <h2 class="section-title">Business Value at Scale</h2>
-                        
-                        <div class="value-metrics">
-                            <div class="metric-card">
-                                <div class="metric-value">4.5 hrs</div>
-                                <div class="metric-label">saved per week per employee through reduced search time</div>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-value">20-40%</div>
-                                <div class="metric-label">support ticket deflection with conversational AI</div>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-value">14-15%</div>
-                                <div class="metric-label">boost in support agent throughput</div>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-value">30-50%</div>
-                                <div class="metric-label">faster ticket resolution times</div>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-value">+9.4%</div>
-                                <div class="metric-label">revenue per user increase</div>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-value">+5%</div>
-                                <div class="metric-label">overall productivity increase</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- ==================== End Business Value Section ==================== -->
-
                 <!-- ==================== Start CTA Section ==================== -->
                 <section class="section cta-section">
                     <div class="container-custom">
-                        <h2 class="cta-title">Transform Your Content Today</h2>
+                        <h2 class="cta-title">Ready to test the agents you already ship?</h2>
                         <p class="cta-description">
-                            Join leading organizations who trust ContentIQ to transform their static content into intelligent, conversational experiences. 
-                            Reduce search time, increase productivity, and unlock the full value of your content investments.
+                            Connect WatsonX Orchestrate and ContentIQ, add your agents, and run suites the same day. Documentation covers the UI, the HTTP API, and MCP when you want to automate.
                         </p>
                         <div class="hero-buttons">
-                            <a href="../../page-contact.html" class="hero-btn">Get Started</a>
-                            <a href="../../ai-agents.html" class="hero-btn">View All Agents</a>
+                            <a href="../../page-contact.html" class="hero-btn primary">Get started</a>
+                            <a href="https://testiq.symplistic.ai/documentation" class="hero-btn" target="_blank" rel="noopener noreferrer">View documentation</a>
+                            <a href="../../ai-agents.html" class="hero-btn">View all agents</a>
                         </div>
                     </div>
                 </section>
@@ -905,7 +852,7 @@
         <div class="trial-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="trial-modal-title">
             <button type="button" class="trial-modal-close" data-trial-close aria-label="Close dialog">&times;</button>
             <div class="trial-modal-badge">Free trial</div>
-            <h2 id="trial-modal-title" class="trial-modal-title">Try ContentIQ with your team</h2>
+            <h2 id="trial-modal-title" class="trial-modal-title">Try TestIQ with your team</h2>
             <p class="trial-modal-text">For a free trial, reach out to us at <strong style="color: #fff;">info@symplistic.ai</strong>. We will get back to you with next steps and access options.</p>
             <a href="mailto:info@symplistic.ai" class="hero-btn primary trial-modal-email">Email info@symplistic.ai</a>
         </div>
@@ -960,7 +907,7 @@
         }, observerOptions);
 
         // Observe cards for animation
-        document.querySelectorAll('.capability-card, .use-case-card, .stat-card, .metric-card').forEach(card => {
+        document.querySelectorAll('.capability-card, .stat-card, .metric-card, .core-cap-block').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
